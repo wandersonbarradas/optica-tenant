@@ -1,0 +1,54 @@
+.navItem {
+    color: var(--ashenGray);
+    position: relative;
+    overflow-x: hidden;
+    border-radius: var(--small1);
+    font-size: var(--medium1);
+}
+
+.navItem.disabled {
+    opacity: 0.5;
+}
+
+.navItem+.navItem {
+    margin-top: var(--small2);
+}
+
+.navItem.activeLink,
+.navItem:hover {
+    background: linear-gradient(90deg, var(--colorEmphasisSecondary) 0%, var(--colorEmphasis) 100%);
+    color: var(--white);
+}
+
+.navItem .boxContent {
+    display: flex;
+    align-items: center;
+    font-size: var(--medium1);
+    cursor: pointer;
+}
+
+.navItem .boxContent {
+    display: flex;
+    align-items: center;
+    font-size: var(--medium1);
+    cursor: pointer;
+}
+
+.navItem .icon {
+    display: grid;
+    place-items: center;
+    min-width: 48px;
+    padding: var(--small2) 0;
+    border-radius: var(--small1);
+}
+
+.more {
+    position: absolute;
+    right: 5px;
+    transition: all .2s ease;
+    transform: rotate(0deg);
+}
+
+.more.active {
+    transform: rotate(180deg);
+}

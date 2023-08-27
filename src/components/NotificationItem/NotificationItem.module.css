@@ -1,0 +1,39 @@
+.notificationItem {
+    display: flex;
+    flex-direction: column;
+    padding: var(--small2);
+    gap: 10px;
+    background-color: var(--bgPrimary);
+    cursor: pointer;
+    transition: all .2s ease;
+    border-radius: 10px;
+    border: 1px solid var(--borderColor)
+}
+
+.notificationItem:hover {
+    /* background-color: var(--softTransparentBlue); */
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+.leftSide {
+    text-align: start;
+}
+
+.rightSide {
+    text-align: start;
+}
+
+.row p {
+    font-size: var(--small3);
+    color: var(--colorPrimary);
+}
+
+.row p span {
+    /* color: var(--crimson); */
+}

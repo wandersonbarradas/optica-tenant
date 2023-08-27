@@ -1,0 +1,78 @@
+.aside {
+    width: 75%;
+    background-color: var(--bgSecondary);
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: -80%;
+    bottom: 0;
+    transition: all .3s ease;
+    padding: var(--medium1);
+    transition: width .2s ease;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+.aside.active {
+    left: 0;
+}
+
+.aside .menuHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aside .closeMenu {
+    color: var(--white);
+}
+
+.aside .closeMenu svg {
+    font-size: var(--larger1);
+}
+
+.aside .menuNavigation {
+    margin-top: var(--larger3);
+}
+
+.aside .menuNavigation,
+.aside .menuOptions {
+    list-style: none;
+    overflow-x: hidden;
+}
+
+.moreMenu {
+    height: 0;
+    overflow: hidden;
+    transition: all .2s ease;
+}
+
+.moreMenu ul {
+    margin-top: var(--small2);
+    margin-left: 23px;
+    padding-left: 5px;
+    border-left: 2px solid var(--colorEmphasis);
+}
+
+.moreMenu ul li a {
+    font-size: var(--small3) !important;
+}
+
+.moreMenu ul li svg {
+    font-size: var(--medium1) !important;
+}
+
+.moreMenu.active {
+    height: auto;
+}
+
+.options {
+    /* padding: 0 1rem; */
+    margin: 2rem 0;
+}
+
+.menuOptions {
+    border-top: 1px solid var(--borderColor);
+    padding-top: 2rem;
+}
