@@ -92,7 +92,7 @@ export const HeaderLayout = ({ setShowMenu }: Props) => {
                     state={modal}
                 >
                     <div className={styles.containerNotification}>
-                        <>
+                        <div className={styles.contentNotification}>
                             {notifications.length === 0 && (
                                 <p className={styles.titleNotification}>
                                     Sem Notificações
@@ -119,7 +119,7 @@ export const HeaderLayout = ({ setShowMenu }: Props) => {
                                     </ul>
                                 </>
                             )}
-                        </>
+                        </div>
                     </div>
                 </Modal>
             )}

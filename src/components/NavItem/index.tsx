@@ -5,7 +5,7 @@ import { OverridableComponent } from "@mui/material/OverridableComponent";
 import Link from "next/link";
 import styles from "./navItem.module.css";
 import { usePathname } from "next/navigation";
-import { useTenantContext } from "@/contexts/tenantContext/hook";
+import { useTenantContext } from "@/contexts/tenant/hook";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import { useEffect, useState } from "react";
 

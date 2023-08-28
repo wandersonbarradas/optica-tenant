@@ -16,7 +16,7 @@
 
 .navItem.activeLink,
 .navItem:hover {
-    background: linear-gradient(90deg, var(--colorEmphasisSecondary) 0%, var(--colorEmphasis) 100%);
+    background: (--colorGradientEmphasis);
     color: var(--white);
 }
 

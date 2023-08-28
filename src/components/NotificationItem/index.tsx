@@ -1,4 +1,4 @@
-import { useTenantContext } from "@/contexts/tenantContext/hook";
+import { useTenantContext } from "@/contexts/tenant/hook";
 import styles from "./NotificationItem.module.css";
 import { NotificationType } from "@/types/NotificationItemType";
 import Link from "next/link";
@@ -14,7 +14,7 @@ export const NotificationItem = ({ installment }: Props) => {
                 <div className={styles.row}>
                     <div className={styles.leftSide}>
                         <p>
-                            Parcela de N°:
+                            Parcela N°:
                             <span>
                                 {" " +
                                     (installment.numberInstallment < 10
@@ -35,7 +35,13 @@ export const NotificationItem = ({ installment }: Props) => {
                     <div className={styles.leftSide}>
                         <p>
                             Valor:
-                            <span>{" " + installment.value.toFixed(2)}</span>
+                            <span>
+                                {" " +
+                                    installment.value.toLocaleString("pt-BR", {
+                                        style: "currency",
+                                        currency: "BRL",
+                                    })}
+                            </span>
                         </p>
                     </div>
                     <div className={styles.rightSide}>

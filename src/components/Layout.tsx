@@ -1,6 +1,6 @@
 "use client";
 
-import { TenantContent } from "@/contexts/tenantContext";
+import { TenantContent } from "@/contexts/tenant";
 import styles from "../styles/layout.module.css";
 import { useContext, useEffect, useState } from "react";
 import { switchTheme } from "@/utils/Theme";
@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { Loader } from "./Loader";
 import { AsideLayout } from "./AsideLayout";
 import { HeaderLayout } from "./HeaderLayout";
+import { User } from "@/types/User";
 
 type Props = {
     tenant: Tenant;

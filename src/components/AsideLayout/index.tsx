@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./AsideLayout.module.css";
 import Image from "next/image";
-import { useTenantContext } from "@/contexts/tenantContext/hook";
+import { useTenantContext } from "@/contexts/tenant/hook";
 import Logo from "../../../public/images/logo.jpg";
 import { NavItem } from "../NavItem";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
@@ -13,6 +13,8 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import { useState } from "react";
+import { redirect } from "next/navigation";
+import { useAuthContext } from "@/contexts/auth";
 
 type Props = {
     setShowMenu: (value: boolean) => void;
@@ -21,8 +23,13 @@ type Props = {
 
 export const AsideLayout = ({ setShowMenu, showMenu }: Props) => {
     const { tenant } = useTenantContext();
+    const { setToken, setUser } = useAuthContext();
     const [moreMenu, setMoreMenu] = useState(false);
 
+    const logOut = () => {
+        setToken("");
+        redirect(`/${tenant?.slug}/login`);
+    };
     return (
         <aside
             className={[
@@ -132,9 +139,10 @@ export const AsideLayout = ({ setShowMenu, showMenu }: Props) => {
                         disabled
                     />
                     <NavItem
+                        link={`/${tenant?.slug}/login`}
                         label="Sair"
                         icon={ExitToAppOutlinedIcon}
-                        disabled
+                        click={logOut}
                     />
                 </ul>
             </div>
