@@ -27,7 +27,7 @@ export const Dashboard = ({ token, user }: Props) => {
                 <h3 className={styles.titleCard}>Receita da semana</h3>
                 <div className={styles.contentCard}>
                     <div className={styles.infoCard}>
-                        <div className={styles.cardValue}>R$ 0,00</div>
+                        <div className={styles.cardValue}>R$ 10.000,00</div>
                         <div
                             className={[
                                 styles.cardPercentage,

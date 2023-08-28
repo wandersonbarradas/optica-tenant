@@ -75,5 +75,11 @@ export const ChartLineSimple = ({ background, dataChart, label }: Props) => {
             },
         ],
     };
-    return <Line style={{ maxWidth: 200 }} options={options} data={data} />;
+    return (
+        <Line
+            style={{ maxWidth: 200, width: "100%" }}
+            options={options}
+            data={data}
+        />
+    );
 };

@@ -21,12 +21,14 @@
     display: flex;
     justify-content: space-between;
     align-items: end;
+    gap: var(--medium1);
 }
 
 .cardValue {
     font-size: var(--medium3);
     font-weight: 600;
     margin-bottom: var(--small1);
+    white-space: nowrap;
 }
 
 .cardPercentage {
