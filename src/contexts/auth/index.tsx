@@ -1,3 +1,4 @@
+"use client";
 import { createContext, useReducer } from "react";
 import { reducer } from "./reducer";
 import { ContextType, DataType, ProviderType } from "./types";
@@ -14,7 +15,7 @@ export const AppContext = createContext<ContextType>({
     dispatch: () => {},
 });
 
-export const Provider = ({ children }: ProviderType) => {
+export const AuthProvider = ({ children }: ProviderType) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const value = { state, dispatch };

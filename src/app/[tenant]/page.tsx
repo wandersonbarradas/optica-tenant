@@ -8,7 +8,6 @@ type Props = {
 };
 
 export default async function Page({ params }: Props) {
-    console.log(params);
     const cookieStore = cookies();
     const token = cookieStore.get("token");
     const user = await authorizeToken(token?.value as string);

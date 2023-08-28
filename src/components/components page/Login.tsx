@@ -80,7 +80,6 @@ export const Login = ({ tenant }: Props) => {
     const auth = async (email: string, password: string) => {
         const result = await authLogin(email, password);
         if (result.state) {
-            console.log(result);
             setAlerts([
                 ...alerts,
                 {

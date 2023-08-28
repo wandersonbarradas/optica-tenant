@@ -2,8 +2,8 @@ type Props = {
     params: { id: string };
 };
 
-const id = ({ params }: Props) => {
+const Id = ({ params }: Props) => {
     return <div>Vendas numero {params.id}</div>;
 };
 
-export default id;
+export default Id;

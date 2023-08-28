@@ -16,7 +16,7 @@
 
 .navItem.activeLink,
 .navItem:hover {
-    background: (--colorGradientEmphasis);
+    background: var(--colorGradientEmphasis);
     color: var(--white);
 }
 
