@@ -2,3 +2,7 @@
     width: 100%;
     position: relative;
 }
+
+.container main {
+    padding: var(--medium1);
+}

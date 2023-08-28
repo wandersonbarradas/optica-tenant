@@ -44,8 +44,8 @@ export const AsideLayout = ({ setShowMenu, showMenu }: Props) => {
                         <Image
                             src={Logo}
                             alt={`Logo ${tenant?.name}`}
-                            width={50}
-                            height={50}
+                            width={65}
+                            height={65}
                             style={{ borderRadius: "50%" }}
                             priority
                         />

@@ -1,0 +1,75 @@
+.containerDashboard {
+    display: grid;
+    gap: var(--larger1);
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.cardChart {
+    grid-column: 1 / span 2;
+    background-color: var(--white);
+    padding: var(--medium2) var(--medium1);
+}
+
+.titleCard {
+    font-size: var(--medium2);
+    color: var(--colorPrimary);
+    font-weight: 500;
+    margin-bottom: var(--medium1);
+}
+
+.contentCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.cardValue {
+    font-size: var(--medium3);
+    font-weight: 600;
+    margin-bottom: var(--small1);
+}
+
+.cardPercentage {
+    width: 70px;
+    display: inline-flex;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.325rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    gap: 0.5rem;
+}
+
+.cardPercentage.success {
+    background-color: rgba(41, 204, 151, 0.5);
+    color: var(--jungleGreen);
+}
+
+.cardPercentage.danger {
+    background-color: rgba(241, 43, 44, 0.5);
+    color: var(--darkCrimson);
+}
+
+.cardPercentage .cardIcon {
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+    padding: 1px;
+}
+
+.cardPercentage .cardIcon.danger {
+    border: 1px solid var(--darkCrimson);
+}
+
+.cardPercentage .cardIcon.success {
+    border: 1px solid var(--jungleGreen);
+}
+
+.cardPercentage .cardIcon svg {
+    font-size: 16px;
+}
+
+.cardLarger {
+    grid-column: 1 / span 2;
+    background-color: var(--white);
+}

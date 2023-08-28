@@ -1,7 +1,7 @@
 import { authorizeToken, getTenantFromSlug } from "@/libs/ApiBack";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { Layout } from "@/components/Layout";
+import { Layout } from "@/components/Layout/Layout";
 import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
