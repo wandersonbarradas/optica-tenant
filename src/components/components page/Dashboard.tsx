@@ -27,7 +27,7 @@ export const Dashboard = ({ token, user }: Props) => {
                 <h3 className={styles.titleCard}>Receita da semana</h3>
                 <div className={styles.contentCard}>
                     <div className={styles.infoCard}>
-                        <div className={styles.cardValue}>R$ 10.000,00</div>
+                        <div className={styles.cardValue}>R$ 10.355,00</div>
                         <div
                             className={[
                                 styles.cardPercentage,
@@ -44,12 +44,37 @@ export const Dashboard = ({ token, user }: Props) => {
                         <ChartLineSimple
                             background="rgba(41, 204, 151, 0.5)"
                             label="Receita"
-                            dataChart={[0, 0, 0, 0, 0, 0, 0]}
+                            dataChart={[150, 800, 200, 0, 100, 5, 70]}
                         />
                     </div>
                 </div>
             </div>
-            <div className={styles.cardChart}>...</div>
+            <div className={styles.cardChart}>
+                <h3 className={styles.titleCard}>Receita da semana</h3>
+                <div className={styles.contentCard}>
+                    <div className={styles.infoCard}>
+                        <div className={styles.cardValue}>05</div>
+                        <div
+                            className={[
+                                styles.cardPercentage,
+                                styles.danger,
+                            ].join(" ")}
+                        >
+                            <div className={styles.cardIcon}>
+                                <TrendingUpIcon />
+                            </div>
+                            20%
+                        </div>
+                    </div>
+                    <div className={styles.cardChartArea}>
+                        <ChartLineSimple
+                            background="rgba(255, 165, 0, 0.5)"
+                            label="Receita"
+                            dataChart={[1, 0, 2, 0, 0, 1, 1]}
+                        />
+                    </div>
+                </div>
+            </div>
             <div className={styles.cardLarger}>...</div>
             <div className={styles.cardLarger}>...</div>
         </div>

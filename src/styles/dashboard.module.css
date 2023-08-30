@@ -1,6 +1,6 @@
 .containerDashboard {
     display: grid;
-    gap: var(--larger1);
+    gap: var(--medium2) var(--larger1);
     grid-template-columns: repeat(2, 1fr);
 }
 
@@ -8,6 +8,8 @@
     grid-column: 1 / span 2;
     background-color: var(--white);
     padding: var(--medium2) var(--medium1);
+    border: 1px solid var(--borderColor);
+    border-radius: var(--small2);
 }
 
 .titleCard {
@@ -20,7 +22,7 @@
 .contentCard {
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: flex-end;
     gap: var(--medium1);
 }
 
@@ -50,6 +52,10 @@
 .cardPercentage.danger {
     background-color: rgba(241, 43, 44, 0.5);
     color: var(--darkCrimson);
+}
+
+.cardPercentage.danger .cardIcon {
+    transform: rotateX(180deg);
 }
 
 .cardPercentage .cardIcon {
