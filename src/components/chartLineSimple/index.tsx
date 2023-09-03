@@ -63,19 +63,6 @@ type Props = {
 export const ChartLineSimple = ({ background, dataChart, label }: Props) => {
     const canvasElement = useRef<ChartJS<"line", number[], string>>(null);
 
-    const handleResize = () => {
-        if (canvasElement.current) {
-            canvasElement.current.resize();
-        }
-    };
-
-    useEffect(() => {
-        window.addEventListener("resize", handleResize);
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
     const data = {
         labels,
         datasets: [
@@ -93,7 +80,7 @@ export const ChartLineSimple = ({ background, dataChart, label }: Props) => {
     return (
         <Line
             ref={canvasElement}
-            style={{ maxWidth: 200, width: "100%" }}
+            style={{ maxWidth: 200, width: "100% !important" }}
             options={options}
             data={data}
         />

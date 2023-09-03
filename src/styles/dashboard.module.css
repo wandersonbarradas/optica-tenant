@@ -80,6 +80,13 @@
     font-size: 16px;
 }
 
+.cardChartArea {
+    flex: 1;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .cardLarger {
     grid-column: 1 / span 2;
     background-color: var(--white);
