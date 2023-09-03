@@ -1,0 +1,39 @@
+.tableSales {
+    padding: var(--medium2) 0;
+    background-color: var(--white);
+    border: 1px solid var(--borderColor);
+    border-radius: var(--small2);
+}
+
+.tableTitle {
+    font-size: var(--medium2);
+    color: var(--colorPrimary);
+    font-weight: 600;
+    margin-bottom: var(--medium1);
+    padding: 0 var(--medium1);
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+
+.table .desktop {
+    display: none;
+}
+
+.table tr th {
+    font-weight: 600;
+    padding: 0.5rem;
+    color: var(--slateGray);
+}
+
+.table tr td,
+.table tr th {
+    border-bottom: 1px solid var(--borderColor);
+    color: var(--colorPrimary);
+    line-height: 1.5rem;
+    font-size: var(--small3);
+    text-align: center;
+}

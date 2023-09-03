@@ -1,0 +1,55 @@
+.tableTr {
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.tableTr.bgDanger {
+    background-color: var(--softTransparentCrimson);
+}
+
+.tableTr:hover {
+    background-color: var(--softTransparentBlue);
+}
+
+
+.tableTr td {
+    padding: var(--medium1) var(--small2);
+    font-weight: var(--weightMedium);
+}
+
+.clientName {
+    font-weight: 500;
+}
+
+.statusSale {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.statusSale .status {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+}
+
+.statusSale .status.success {
+    background-color: var(--verdantGreen);
+}
+
+.statusSale .status.danger {
+    background-color: var(--crimson);
+}
+
+.statusSale .status.warning {
+    background-color: var(--goldenYellow);
+}
+
+.tableTr td.colorDanger {
+    color: var(--crimson);
+}
+
+.desktop {
+    display: none;
+}

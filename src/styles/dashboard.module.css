@@ -4,18 +4,21 @@
     grid-template-columns: repeat(2, 1fr);
 }
 
-.cardChart {
-    grid-column: 1 / span 2;
+.card {
     background-color: var(--white);
     padding: var(--medium2) var(--medium1);
     border: 1px solid var(--borderColor);
     border-radius: var(--small2);
 }
 
+.cardChart {
+    grid-column: 1 / span 2;
+}
+
 .titleCard {
     font-size: var(--medium2);
     color: var(--colorPrimary);
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: var(--medium1);
 }
 
@@ -28,7 +31,7 @@
 
 .cardValue {
     font-size: var(--medium3);
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: var(--small1);
     white-space: nowrap;
 }

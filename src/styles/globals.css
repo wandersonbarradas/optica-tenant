@@ -9,9 +9,11 @@
   --colorEmphasisSecondary: #2AF598;
   --crimson: #f12b2c;
   --darkCrimson: #CC1C1D;
+  --softTransparentCrimson: rgba(241, 43, 44, 0.10);
   --goldenYellow: #ffd700;
   --verdantGreen: #29cc97;
   --jungleGreen: #1AAE7E;
+  --softTransparentBlue: rgba(55, 81, 255, 0.04);
   --white: #FFFFFF;
   --small1: 0.375rem;
   --small2: 0.625rem;
