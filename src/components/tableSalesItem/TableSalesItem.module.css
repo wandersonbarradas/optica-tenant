@@ -53,3 +53,13 @@
 .desktop {
     display: none;
 }
+
+@media (min-width: 1024px) {
+    .desktop {
+        display: table-cell;
+    }
+
+    .mobile {
+        display: none;
+    }
+}
