@@ -1,6 +1,6 @@
 import { SaleBasic } from "@/types/Sale";
 import styles from "./TableSales.module.css";
-import { TableSalesItem } from "../tableOrdersItem";
+import { TableSalesItem } from "../tableSalesItem";
 import { useState } from "react";
 
 type Props = {

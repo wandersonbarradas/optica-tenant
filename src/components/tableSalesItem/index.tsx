@@ -1,5 +1,5 @@
 import { SaleBasic } from "@/types/Sale";
-import styles from "./TableOrdersItem.module.css";
+import styles from "./TableSalesItem.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { checkInstallmentsSale } from "@/utils/SalesFunctions";
