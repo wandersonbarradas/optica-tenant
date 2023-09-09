@@ -14,25 +14,11 @@ export const NotificationItem = ({ installment }: Props) => {
                 <div className={styles.row}>
                     <div className={styles.leftSide}>
                         <p>
-                            Parcela N°:
-                            <span>
-                                {" " +
-                                    (installment.numberInstallment < 10
-                                        ? "0" +
-                                          installment.numberInstallment.toString()
-                                        : installment.numberInstallment)}
-                            </span>
-                        </p>
-                    </div>
-                    <div className={styles.rightSide}>
-                        <p>
                             Cliente:
                             <span>{" " + installment.client}</span>
                         </p>
                     </div>
-                </div>
-                <div className={styles.row}>
-                    <div className={styles.leftSide}>
+                    <div className={styles.rightSide}>
                         <p>
                             Valor:
                             <span>
@@ -41,6 +27,20 @@ export const NotificationItem = ({ installment }: Props) => {
                                         style: "currency",
                                         currency: "BRL",
                                     })}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div className={styles.row}>
+                    <div className={styles.leftSide}>
+                        <p>
+                            Parcela N°:
+                            <span>
+                                {" " +
+                                    (installment.numberInstallment < 10
+                                        ? "0" +
+                                          installment.numberInstallment.toString()
+                                        : installment.numberInstallment)}
                             </span>
                         </p>
                     </div>

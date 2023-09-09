@@ -3,6 +3,22 @@
     position: relative;
 }
 
+.container .layoutMain {
+    overflow-y: auto;
+    height: 100vh;
+}
+
 .container main {
+    flex: 1;
     padding: var(--medium1);
+}
+
+@media (min-width: 768px) {
+    .container {
+        display: flex;
+    }
+
+    .container .layoutMain {
+        flex: 1;
+    }
 }

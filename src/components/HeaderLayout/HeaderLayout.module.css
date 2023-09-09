@@ -9,15 +9,15 @@
 
 .leftSide .userInfo {
     display: none;
-    font-size: var(--medium2);
+    font-size: var(--medium1);
     font-weight: 600;
 }
 
-.leftSide .meuIcon {
+.leftSide .menuIcon {
     color: var(--colorEmphasis);
 }
 
-.leftSide .meuIcon svg {
+.leftSide .menuIcon svg {
     font-size: var(--larger3);
 }
 
@@ -44,6 +44,7 @@
 
 .rightSide .searchArea {
     width: 44px;
+    height: 38px;
     display: none;
     justify-content: flex-start;
     align-items: center;
@@ -71,14 +72,14 @@
 }
 
 .rightSide .searchArea.active input {
-    width: auto;
+    width: 100%;
 }
 
 .containerNotification {
+    width: 100%;
+    max-width: 500px;
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,7 +87,6 @@
 
 .contentNotification {
     width: 100%;
-    max-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -102,7 +102,52 @@
 }
 
 .listNotification {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+
+@media (min-width: 500px) {
+    .contentNotification {
+        border-radius: 0 0 var(--small2) var(--small2);
+    }
+
+    .containerNotification {
+        left: calc(50% - 250px);
+    }
+}
+
+@media (min-width: 768px) {
+    .leftSide .menuIcon {
+        display: none;
+    }
+
+    .leftSide .userInfo {
+        display: block;
+    }
+
+    .rightSide .searchArea {
+        display: flex;
+    }
+
+    .rightSide .notification.active::before {
+        content: "";
+        border-radius: 50%;
+        width: 7px;
+        height: 7px;
+        background-color: red;
+        position: absolute;
+        top: 11px;
+        right: 11px;
+    }
+
+    .containerNotification {
+        top: 50px;
+    }
+
+    .contentNotification {
+        border-radius: var(--small2);
+    }
 }

@@ -19,6 +19,8 @@ type Props = {
     more?: boolean;
     open?: boolean;
     click?: () => void;
+    showMenu?: boolean;
+    setShowMenu?: (value: boolean) => void;
 };
 
 export const NavItem = (props: Props) => {
@@ -56,6 +58,9 @@ export const NavItem = (props: Props) => {
         if (props.click) {
             props.click();
         }
+        if (props.setShowMenu) {
+            props.setShowMenu(true);
+        }
     };
     return (
         <li
@@ -83,7 +88,7 @@ export const NavItem = (props: Props) => {
                         <props.icon />
                     </div>
                     <span className={styles.label}>{props.label}</span>
-                    {props.more && (
+                    {props.more && props.showMenu && (
                         <div
                             className={[
                                 styles.more,

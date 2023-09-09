@@ -1,6 +1,6 @@
 import { SaleBasic } from "@/types/Sale";
 import styles from "./TableSales.module.css";
-import { TableSalesItem } from "../tableSalesItem";
+import { TableSalesItem } from "../tableOrdersItem";
 import { useState } from "react";
 
 type Props = {
@@ -16,7 +16,12 @@ export const TableSales = ({ titleTable, data }: Props) => {
             <table className={styles.table}>
                 <thead className={styles.thead}>
                     <tr>
-                        <th className={styles.desktop} scope="col">
+                        <th
+                            className={[styles.desktop, styles.status].join(
+                                " ",
+                            )}
+                            scope="col"
+                        >
                             Situação
                         </th>
                         <th scope="col">Cliente</th>

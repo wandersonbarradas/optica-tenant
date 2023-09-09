@@ -9,7 +9,6 @@ import { usePathname } from "next/navigation";
 import { Loader } from "../Loader";
 import { AsideLayout } from "../AsideLayout";
 import { HeaderLayout } from "../HeaderLayout";
-import { User } from "@/types/User";
 
 type Props = {
     tenant: Tenant;
@@ -39,9 +38,9 @@ export const Layout = ({ children, tenant }: Props) => {
     return (
         <div className={styles.container}>
             <AsideLayout setShowMenu={setShowMenu} showMenu={showMenu} />
-            <div>
+            <div className={[styles.layoutMain, "scroll"].join(" ")}>
                 <HeaderLayout setShowMenu={setShowMenu} />
-                <main>{children}</main>
+                <main className={!showMenu ? "closeMenu" : ""}>{children}</main>
             </div>
         </div>
     );

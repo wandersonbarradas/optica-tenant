@@ -8,12 +8,13 @@ import { getLateInstallments } from "@/utils/ApiFront";
 import { Modal } from "../Modal";
 import { NotificationItem } from "../NotificationItem";
 import { usePathname } from "next/navigation";
-
+import { useAuthContext } from "@/contexts/auth/hook";
 type Props = {
     setShowMenu: (value: boolean) => void;
 };
 
 export const HeaderLayout = ({ setShowMenu }: Props) => {
+    const { user } = useAuthContext();
     const inputRef = useRef<HTMLInputElement>(null);
     const [showInput, setShowInput] = useState(false);
     const [notifications, setNotifications] = useState<NotificationType[]>([]);
@@ -23,6 +24,10 @@ export const HeaderLayout = ({ setShowMenu }: Props) => {
         setShowInput(false);
         getNotifications();
     }, []);
+
+    useEffect(() => {
+        if (showInput) inputRef.current?.focus();
+    }, [showInput]);
 
     useEffect(() => {
         setModal(false);
@@ -35,7 +40,6 @@ export const HeaderLayout = ({ setShowMenu }: Props) => {
 
     const handleSearchArea = () => {
         setShowInput(!showInput);
-        if (showInput) inputRef.current?.focus();
     };
 
     const handleFocusInput = () => {
@@ -47,11 +51,14 @@ export const HeaderLayout = ({ setShowMenu }: Props) => {
                 <div className={styles.leftSide}>
                     <div
                         onClick={() => setShowMenu(true)}
-                        className={["icon", styles.meuIcon].join(" ")}
+                        className={["icon", styles.menuIcon].join(" ")}
                     >
                         <MenuIcon />
                     </div>
-                    <div className={styles.userInfo}>Bem vindo, Wanderson</div>
+                    <div className={styles.userInfo}>
+                        Bem vindo,{" "}
+                        {user?.name.split(" ").splice(0, 2).join(" ")}
+                    </div>
                 </div>
                 <div className={styles.rightSide}>
                     <div
@@ -74,7 +81,7 @@ export const HeaderLayout = ({ setShowMenu }: Props) => {
                             className={["icon", styles.searchIcon].join(" ")}
                             onClick={handleSearchArea}
                         >
-                            <SearchOutlinedIcon />
+                            <SearchOutlinedIcon fontSize="small" />
                         </div>
                         <input
                             ref={inputRef}

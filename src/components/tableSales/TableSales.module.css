@@ -37,3 +37,9 @@
     font-size: var(--small3);
     text-align: center;
 }
+
+@media (min-width: 1024px) {
+    .table .desktop {
+        display: table-cell;
+    }
+}

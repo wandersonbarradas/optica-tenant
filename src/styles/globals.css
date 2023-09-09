@@ -37,6 +37,9 @@
 body {
   background-color: var(--bgPrimary);
   color: var(--colorPrimary);
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 a {
@@ -96,4 +99,10 @@ a {
   width: 100%;
   list-style: none;
   transition: all .5s ease;
+}
+
+@media (min-width: 760px) {
+  .icon svg {
+    font-size: var(--medium3);
+  }
 }

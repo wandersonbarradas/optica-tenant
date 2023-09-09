@@ -87,7 +87,7 @@ export const Dashboard = ({
                 </div>
             </div>
             <div className={[styles.card, styles.cardChart].join(" ")}>
-                <h3 className={styles.titleCard}>Receita da semana</h3>
+                <h3 className={styles.titleCard}>Vendas da semana</h3>
                 <div className={styles.contentCard}>
                     <div className={styles.infoCard}>
                         <div className={styles.cardValue}>

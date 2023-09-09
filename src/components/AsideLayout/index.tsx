@@ -12,6 +12,10 @@ import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
+import AssessmentOutlinedIcon from "@mui/icons-material/AssessmentOutlined";
+import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
+import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
 import { useState } from "react";
 import { redirect } from "next/navigation";
 import { useAuthContext } from "@/contexts/auth";
@@ -38,14 +42,20 @@ export const AsideLayout = ({ setShowMenu, showMenu }: Props) => {
                 "scroll",
             ].join(" ")}
         >
+            <div
+                onClick={() => setShowMenu(!showMenu)}
+                className={styles.ArrowIcon}
+            >
+                <KeyboardArrowRightOutlinedIcon />
+            </div>
             <div className={styles.menuHeader}>
                 <div className={styles.menuLogo}>
                     <Link href={`/${tenant?.slug}`}>
                         <Image
                             src={Logo}
                             alt={`Logo ${tenant?.name}`}
-                            width={65}
-                            height={65}
+                            width={showMenu ? 65 : 50}
+                            height={showMenu ? 65 : 50}
                             style={{ borderRadius: "50%" }}
                             priority
                         />
@@ -68,18 +78,18 @@ export const AsideLayout = ({ setShowMenu, showMenu }: Props) => {
                     <NavItem
                         label="Relatórios"
                         link={`/${tenant?.slug}/relatorios`}
-                        icon={DashboardOutlinedIcon}
+                        icon={AssessmentOutlinedIcon}
                         disabled
                     />
                     <NavItem
                         label="Vendas"
                         link={`/${tenant?.slug}/vendas`}
-                        icon={DashboardOutlinedIcon}
+                        icon={LocalShippingOutlinedIcon}
                     />
                     <NavItem
                         label="Clientes"
                         link={`/${tenant?.slug}/clientes`}
-                        icon={DashboardOutlinedIcon}
+                        icon={GroupsOutlinedIcon}
                         disabled
                     />
                     <NavItem
@@ -87,12 +97,14 @@ export const AsideLayout = ({ setShowMenu, showMenu }: Props) => {
                         icon={MoreHorizOutlinedIcon}
                         more
                         open={moreMenu}
+                        showMenu={showMenu}
+                        setShowMenu={setShowMenu}
                         click={() => setMoreMenu(!moreMenu)}
                     />
                     <div
                         className={[
                             styles.moreMenu,
-                            moreMenu ? styles.active : null,
+                            moreMenu && showMenu ? styles.active : null,
                         ].join(" ")}
                     >
                         <ul>
