@@ -17,7 +17,7 @@
     font-size: var(--medium1);
     background-color: var(--verdantGreen);
     color: var(--white);
-    padding: var(--small2) var(--small3);
+    padding: var(--small3) var(--medium3);
     border-radius: var(--small2);
     transition: all .2s ease;
     font-weight: 500;
@@ -49,6 +49,7 @@
 .cardSummary h3 {
     font-size: var(--medium2);
     font-weight: 500;
+    text-align: center;
 }
 
 .numberSumary {
@@ -75,4 +76,10 @@
 
 .numberSumary.late {
     background-color: var(--crimson);
+}
+
+@media (min-width: 768px) {
+    .sectionSummary {
+        grid-template-columns: 1fr 1fr;
+    }
 }
