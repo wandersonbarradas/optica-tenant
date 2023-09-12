@@ -104,7 +104,9 @@ export const TableSalesItem = ({ sale }: Props) => {
                     : nextInstallment.date.toLocaleDateString("pt-BR")}
             </td>
             <td className={styles.desktop}>
-                R$ {(sale.payment.cash_value ?? sale.payment.value).toFixed(2)}
+                {Formatters.formatBrazilianCurrency(
+                    sale.payment.cash_value ?? sale.payment.value,
+                )}
             </td>
         </tr>
     );

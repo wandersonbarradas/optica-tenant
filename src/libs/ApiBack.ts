@@ -1,5 +1,6 @@
 import { GetSalesConfig, SumByMonth, SumByWeek } from "@/types/Api";
 import { Sale, SaleBasic } from "@/types/Sale";
+import { SalesSummaryStatus } from "@/types/salesSummary";
 import { Tenant } from "@/types/Tenant";
 import { User } from "@/types/User";
 
@@ -279,6 +280,35 @@ export const getSumByWeek = async (idTenant: number): Promise<SumByWeek> => {
         Sun: { value: 700, quantity: 2 },
     };
     return week;
+};
+export const getSalesSummaryStatus = async (
+    idTenant: number,
+): Promise<SalesSummaryStatus> => {
+    return {
+        paid: 1,
+        pending: 2,
+        late: 1,
+    };
+    // const result = await Prisma.$queryRaw`
+    //             SELECT
+    //         SUM(CASE
+    //             WHEN forms_payments.in_cash = true OR forms_payments.card = true OR (SELECT COUNT(*) FROM installments WHERE installments.id_payment = payments.id AND installments.received = false) = 0 THEN 1
+    //             ELSE 0
+    //         END) AS paid,
+    //         SUM(CASE
+    //             WHEN forms_payments.in_cash = false AND forms_payments.card = false AND (SELECT COUNT(*) FROM installments WHERE installments.id_payment = payments.id AND installments.received = false) > 0 THEN 1
+    //             ELSE 0
+    //         END) AS pending,
+    //         SUM(CASE
+    //             WHEN forms_payments.in_cash = false AND forms_payments.card = false AND (SELECT COUNT(*) FROM installments WHERE installments.id_payment = payments.id AND installments.received = false AND installments.due_date <= NOW()) > 0 THEN 1
+    //             ELSE 0
+    //         END) AS late
+    //     FROM sales
+    //     INNER JOIN payments ON sales.id = payments.id_sale
+    //     INNER JOIN forms_payments ON payments.id_payment_method = forms_payments.id
+    //     WHERE sales.id_tenant =${idTenant};
+    //     `;
+    // return result;
 };
 
 const selectBasic = {

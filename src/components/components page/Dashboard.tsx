@@ -1,9 +1,7 @@
 "use client";
 import styles from "@/styles/dashboard.module.css";
-import { useContext, useEffect, useState } from "react";
-import { TenantContent } from "@/contexts/tenant";
+import { useEffect, useState } from "react";
 import { User } from "@/types/User";
-import { useAuthContext } from "@/contexts/auth";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { ChartLineSimple } from "../chartLineSimple";
 import { SaleBasic } from "@/types/Sale";
@@ -20,24 +18,11 @@ type Props = {
     resumeWeek: SumByWeek;
 };
 
-export const Dashboard = ({
-    token,
-    user,
-    lastSales,
-    resumeWeek,
-    sumByMonth,
-}: Props) => {
-    const tenantCtx = useContext(TenantContent);
-    const { setToken, setUser } = useAuthContext();
+export const Dashboard = ({ lastSales, resumeWeek, sumByMonth }: Props) => {
     const [totalValueWeek, setTotalValueWeek] = useState<number>(0);
     const [ArrValueWeek, setArrValueWeek] = useState<number[]>([]);
     const [totalSalesWeek, setTotalSalesWeek] = useState<number>(0);
     const [ArrSalesWeek, setArrSalesWeek] = useState<number[]>([]);
-
-    useEffect(() => {
-        setToken(token);
-        setUser(user);
-    }, []);
 
     useEffect(() => {
         setTotalValueWeek(

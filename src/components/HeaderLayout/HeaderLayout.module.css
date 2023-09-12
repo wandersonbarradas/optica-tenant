@@ -1,6 +1,6 @@
 .header {
     background-color: var(--white);
-    padding: var(--medium1);
+    padding: var(--small1) var(--medium1);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -120,6 +120,10 @@
 }
 
 @media (min-width: 768px) {
+    .header {
+        padding: var(--medium1);
+    }
+
     .leftSide .menuIcon {
         display: none;
     }

@@ -2,6 +2,8 @@
 import { Tenant } from "@/types/Tenant";
 import { ReactNode, createContext, useState } from "react";
 
+export { useTenantContext } from "./hook";
+
 type ContextType = {
     tenant: Tenant | null;
     setTenant: (tenant: Tenant) => void;

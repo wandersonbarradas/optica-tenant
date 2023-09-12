@@ -1,11 +1,10 @@
 import { authorizeToken, getTenantFromSlug } from "@/libs/ApiBack";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { Layout } from "@/components/Layout/Layout";
 import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
-    title: "Dev-Dashboard",
+    title: "Dev-Sales",
 };
 
 type Props = {
@@ -22,11 +21,7 @@ export default async function TenantLayout({ children, params }: Props) {
         return redirect("/");
     }
     if (!user) {
-        return <>{children}</>;
+        return redirect(`/${tenant.slug}/login`);
     }
-    return (
-        <Layout user={user} tenant={tenant}>
-            {children}
-        </Layout>
-    );
+    return <>{children}</>;
 }

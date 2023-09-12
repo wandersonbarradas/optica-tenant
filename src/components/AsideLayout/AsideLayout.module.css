@@ -58,6 +58,7 @@
     opacity: 0;
 }
 
+
 .aside.active:hover .ArrowIcon {
     opacity: 1;
 }
