@@ -1,4 +1,4 @@
-import { Sales } from "@/components/components page/Sales";
+import { Sales } from "@/components/Pages/Sales";
 import {
     getSales,
     getSalesSummaryStatus,

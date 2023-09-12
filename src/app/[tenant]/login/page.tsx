@@ -1,4 +1,4 @@
-import { Login } from "@/components/components page/Login";
+import { Login } from "@/components/Pages/Login";
 import { getTenantFromSlug } from "@/libs/ApiBack";
 import { redirect } from "next/navigation";
 

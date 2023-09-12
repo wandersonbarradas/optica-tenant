@@ -5,7 +5,7 @@ import {
     getSumByWeek,
     getTenantFromSlug,
 } from "@/libs/ApiBack";
-import { Dashboard } from "../../components/components page/Dashboard";
+import { Dashboard } from "../../components/Pages/Dashboard";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 

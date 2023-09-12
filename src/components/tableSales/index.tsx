@@ -1,15 +1,15 @@
+"use client";
+
 import { SaleBasic } from "@/types/Sale";
 import styles from "./TableSales.module.css";
 import { TableSalesItem } from "../tableSalesItem";
-import { useState } from "react";
 
 type Props = {
     titleTable: string;
-    data: SaleBasic[];
+    sales: SaleBasic[];
 };
 
-export const TableSales = ({ titleTable, data }: Props) => {
-    const [sales, setSales] = useState(data);
+export const TableSales = ({ titleTable, sales }: Props) => {
     return (
         <div className={styles.tableSales}>
             <h3 className={styles.tableTitle}>{titleTable}</h3>

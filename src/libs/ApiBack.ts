@@ -285,7 +285,8 @@ export const getSalesSummaryStatus = async (
     idTenant: number,
 ): Promise<SalesSummaryStatus> => {
     return {
-        paid: 1,
+        total: 6,
+        paid: 4,
         pending: 2,
         late: 1,
     };

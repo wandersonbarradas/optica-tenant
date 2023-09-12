@@ -1,0 +1,78 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--medium1) 0 var(--larger1) 0;
+}
+
+.header h1 {
+    font-size: var(--medium3);
+    font-weight: 600;
+    color: var(--colorPrimary);
+}
+
+.btnNew {
+    border: 0;
+    outline: 0;
+    font-size: var(--medium1);
+    background-color: var(--verdantGreen);
+    color: var(--white);
+    padding: var(--small2) var(--small3);
+    border-radius: var(--small2);
+    transition: all .2s ease;
+    font-weight: 500;
+}
+
+.btnNew:hover {
+    background-color: var(--jungleGreen);
+}
+
+.sectionSummary {
+    display: grid;
+    gap: var(--medium1);
+    grid-template-columns: auto;
+    margin-bottom: var(--larger1);
+}
+
+.cardSummary {
+    padding: var(--small3);
+    background-color: var(--white);
+    border-radius: var(--small3);
+    border: solid 1px var(--borderColor);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--small3);
+}
+
+.cardSummary h3 {
+    font-size: var(--medium2);
+    font-weight: 500;
+}
+
+.numberSumary {
+    display: grid;
+    place-items: center;
+    padding: var(--medium1) var(--medium3);
+    border-radius: var(--small2);
+    font-size: var(--medium2);
+    font-weight: 600;
+    color: var(--colorPrimary);
+}
+
+.numberSumary.total {
+    background-color: var(--royalBlue);
+}
+
+.numberSumary.paid {
+    background-color: var(--verdantGreen);
+}
+
+.numberSumary.pending {
+    background-color: var(--goldenYellow);
+}
+
+.numberSumary.late {
+    background-color: var(--crimson);
+}

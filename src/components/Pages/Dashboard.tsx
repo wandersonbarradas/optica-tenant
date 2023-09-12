@@ -107,7 +107,7 @@ export const Dashboard = ({ lastSales, resumeWeek, sumByMonth }: Props) => {
                 />
             </div>
             <div className={styles.cardLarger}>
-                <TableSales data={lastSales} titleTable="Ultimas Vendas" />
+                <TableSales sales={lastSales} titleTable="Ultimas Vendas" />
             </div>
         </div>
     );
