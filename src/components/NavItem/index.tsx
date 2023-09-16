@@ -37,7 +37,7 @@ export const NavItem = (props: Props) => {
         if (path === `/${tenant.slug}` && url !== `/${tenant.slug}`)
             return null;
 
-        if (url.indexOf(path) > -1) {
+        if (url && url.indexOf(path) > -1) {
             return styles.activeLink;
         }
         return null;
