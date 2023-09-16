@@ -1,4 +1,4 @@
-import { Sales } from "@/pages/Sales";
+import { Sales } from "@/pages-components/Sales";
 import {
     authorizeToken,
     getSales,

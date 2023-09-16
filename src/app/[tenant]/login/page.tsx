@@ -1,4 +1,4 @@
-import { Login } from "@/pages/Login";
+import { Login } from "@/pages-components/Login";
 import { authorizeToken, getTenantFromSlug } from "@/libs/prismaQueries";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";

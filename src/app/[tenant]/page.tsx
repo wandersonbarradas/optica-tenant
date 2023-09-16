@@ -5,7 +5,7 @@ import {
     getSumByWeek,
     getTenantFromSlug,
 } from "@/libs/prismaQueries";
-import { Dashboard } from "../../pages/Dashboard";
+import { Dashboard } from "../../pages-components/Dashboard";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
