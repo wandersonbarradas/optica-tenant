@@ -3,34 +3,23 @@ import { Sale, SaleBasic } from "@/types/Sale";
 import { SalesSummaryStatus } from "@/types/salesSummary";
 import { Tenant } from "@/types/Tenant";
 import { User } from "@/types/User";
+import prisma from "./prisma";
 
 export const getTenantFromSlug = async (
     slug: string,
-): Promise<Tenant | undefined> => {
-    const tenants: Tenant[] = [
-        {
-            id: 1,
-            slug: "40graus",
-            status: "ONLINE",
-            name: "Otica 40graus",
-            primaryColor: "#ef4f01",
-            secondaryColor: "#f5c30f",
-            email: "teste@gmail.com",
+): Promise<Tenant | null> => {
+    return await prisma.tenant.findUnique({
+        where: { slug: slug },
+        select: {
+            id: true,
+            slug: true,
+            status: true,
+            name: true,
+            primary_color: true,
+            secondary_color: true,
+            email: true,
         },
-        {
-            id: 2,
-            slug: "otica-wanderson",
-            status: "ONLINE",
-            name: "Otica Wanderson",
-            primaryColor: "#52FFB8",
-            secondaryColor: "#00A7E1",
-            email: "teste@gmail.com",
-        },
-    ];
-    const tenant = tenants.find((item) => item.slug === slug);
-    if (tenant) {
-        return tenant;
-    }
+    });
 };
 export const authorizeToken = async (
     token: string,

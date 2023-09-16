@@ -3,7 +3,7 @@ export type Tenant = {
     slug: string;
     status: "ONLINE" | "OFFLINE";
     name: string;
-    primaryColor: string;
-    secondaryColor: string;
+    primary_color: string;
+    secondary_color: string;
     email: string;
 };

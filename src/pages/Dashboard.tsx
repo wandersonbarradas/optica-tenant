@@ -3,12 +3,12 @@ import styles from "@/styles/dashboard.module.css";
 import { useEffect, useState } from "react";
 import { User } from "@/types/User";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import { ChartLineSimple } from "../chartLineSimple";
+import { ChartLineSimple } from "@/components/chartLineSimple";
 import { SaleBasic } from "@/types/Sale";
 import { SumByMonth, SumByWeek } from "@/types/Api";
 import Formatters from "@/utils/Formatters";
-import { ChartLineComplete } from "../chartLineComplete";
-import { TableSales } from "../tableSales";
+import { ChartLineComplete } from "@/components/chartLineComplete";
+import { TableSales } from "@/components/tableSales";
 
 type Props = {
     user: User;

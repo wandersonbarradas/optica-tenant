@@ -77,18 +77,18 @@ export const HeaderLayout = ({ setShowMenu }: Props) => {
                             showInput ? styles.active : null,
                         ].join(" ")}
                     >
-                        <div
-                            className={["icon", styles.searchIcon].join(" ")}
-                            onClick={handleSearchArea}
-                        >
-                            <SearchOutlinedIcon fontSize="small" />
-                        </div>
                         <input
                             ref={inputRef}
                             type="search"
                             placeholder="Pesquisar"
                             onBlur={handleFocusInput}
                         />
+                        <div
+                            className={["icon", styles.searchIcon].join(" ")}
+                            onClick={handleSearchArea}
+                        >
+                            <SearchOutlinedIcon fontSize="small" />
+                        </div>
                     </div>
                 </div>
             </header>

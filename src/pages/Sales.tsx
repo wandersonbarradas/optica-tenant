@@ -1,8 +1,8 @@
 import { SaleBasic } from "@/types/Sale";
 import { SalesSummaryStatus } from "@/types/salesSummary";
-import styles from "../../styles/sales.module.css";
+import styles from "@/styles/sales.module.css";
 import Formatters from "@/utils/Formatters";
-import { TableSales } from "../tableSales";
+import { TableSales } from "@/components/tableSales";
 type Props = {
     sales: SaleBasic[];
     salesSummaryStatus: SalesSummaryStatus;

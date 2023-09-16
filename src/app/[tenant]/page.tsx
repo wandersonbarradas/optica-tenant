@@ -4,8 +4,8 @@ import {
     getSumByMonth,
     getSumByWeek,
     getTenantFromSlug,
-} from "@/libs/ApiBack";
-import { Dashboard } from "../../components/Pages/Dashboard";
+} from "@/libs/prismaQueries";
+import { Dashboard } from "../../pages/Dashboard";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
@@ -14,9 +14,9 @@ type Props = {
 };
 
 export default async function Page({ params }: Props) {
-    //Pegando Tenant
+    //Validando Tenant
     const tenant = await getTenantFromSlug(params.tenant);
-    if (!tenant) return redirect("/");
+    if (!tenant || tenant.status === "OFFLINE") return redirect("/");
     //Autenticando usuario via Token no Cookies
     const cookieStore = cookies();
     const token = cookieStore.get("token");

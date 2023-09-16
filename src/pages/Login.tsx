@@ -1,15 +1,15 @@
 "use client";
-import { useTenantContext } from "@/contexts/tenant/hook";
+import { useTenantContext } from "@/contexts/tenant";
 import styles from "@/styles/login.module.css";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import { useEffect, useState } from "react";
 import { Tenant } from "@/types/Tenant";
 import { switchTheme } from "@/utils/Theme";
-import { Loader } from "../Loader";
+import { Loader } from "@/components/Loader";
 import { Validate } from "@/utils/validateForm";
 import { Alert } from "@/types/Alert";
-import { AlertComponent } from "../Alert";
+import { AlertComponent } from "@/components/Alert";
 import { authLogin } from "@/utils/ApiFront";
 import { redirect, useRouter } from "next/navigation";
 import { useAuthContext } from "@/contexts/auth";
@@ -19,7 +19,7 @@ type Props = {
 };
 
 export const Login = ({ tenant }: Props) => {
-    const { setToken, setUser, user } = useAuthContext();
+    const { setToken, setUser } = useAuthContext();
     const { setTenant, tenant: tenantCtx } = useTenantContext();
     const router = useRouter();
     const [emailLogin, setEmailLogin] = useState<string>("");
@@ -32,7 +32,7 @@ export const Login = ({ tenant }: Props) => {
 
     useEffect(() => {
         setTenant(tenant);
-        switchTheme(tenant.primaryColor, tenant.secondaryColor);
+        switchTheme(tenant.primary_color, tenant.secondary_color);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tenant]);
 

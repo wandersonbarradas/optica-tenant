@@ -10,7 +10,7 @@
 
 .container main {
     flex: 1;
-    padding: var(--medium1) var(--medium1) var(--larger1) var(--medium1);
+    padding: var(--medium1) var(--medium1) var(--larger3) var(--medium1);
 }
 
 @media (min-width: 768px) {
@@ -20,5 +20,11 @@
 
     .container .layoutMain {
         flex: 1;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container main {
+        padding: var(--larger1);
     }
 }

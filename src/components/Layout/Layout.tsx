@@ -26,7 +26,7 @@ export const Layout = ({ children, tenant, user }: Props) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        switchTheme(tenant.primaryColor, tenant.secondaryColor);
+        switchTheme(tenant.primary_color, tenant.secondary_color);
         setTenant(tenant);
         setUser(user);
         setShowMenu(false);

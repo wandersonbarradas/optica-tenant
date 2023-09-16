@@ -1,10 +1,12 @@
-import { Sales } from "@/components/Pages/Sales";
+import { Sales } from "@/pages/Sales";
 import {
+    authorizeToken,
     getSales,
     getSalesSummaryStatus,
     getTenantFromSlug,
-} from "@/libs/ApiBack";
+} from "@/libs/prismaQueries";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
 type Props = {
     params: { tenant: string };
@@ -14,7 +16,14 @@ type Props = {
 const Vendas = async ({ params, searchParams }: any) => {
     //Pegando Tenant
     const tenant = await getTenantFromSlug(params.tenant);
-    if (!tenant) return redirect("/");
+    if (!tenant || tenant.status === "OFFLINE") return redirect("/");
+    //Autenticando usuario via Token no Cookies
+    const cookieStore = cookies();
+    const token = cookieStore.get("token");
+    const user = await authorizeToken(token?.value as string);
+    if (!user) {
+        return redirect(`/${tenant.slug}/login`);
+    }
     //Pegando ultimas vendas
     const [sales, salesSummaryStatus] = await Promise.all([
         getSales(tenant.id, {

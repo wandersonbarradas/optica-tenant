@@ -1,0 +1,313 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+enum StatusTenant {
+  ONLINE
+  OFFLINE
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model UserAdmin {
+  id                Int      @id @unique @default(autoincrement())
+  name              String   @unique
+  email             String   @unique
+  password          String
+  registration_date DateTime @default(now())
+  role              Role     @default(ADMIN)
+  Tenant            Tenant[]
+
+  @@map("users_admins")
+}
+
+model Tenant {
+  id                Int          @id @unique @default(autoincrement())
+  id_creator        Int
+  slug              String       @unique
+  status            StatusTenant @default(ONLINE)
+  name              String       @unique
+  primary_color     String
+  secondary_color   String
+  email             String       @unique
+  registration_date DateTime     @default(now())
+  UserTenant        UserTenant[]
+
+  creator      UserAdmin      @relation(fields: [id_creator], references: [id])
+  client       Client[]
+  Treatment    Treatment[]
+  Lense        Lense[]
+  specialLense SpecialLense[]
+  employee     Employee[]
+  sale         Sale[]
+  payment      Payment[]
+  formPayment  FormPayment[]
+
+  @@index([id_creator])
+  @@map("tenants")
+}
+
+model UserTenant {
+  id                Int      @id @unique @default(autoincrement())
+  id_tenant         Int
+  id_creator        Int?
+  name              String
+  email             String
+  password          String
+  active            Boolean  @default(true)
+  registration_date DateTime @default(now())
+  role              Role     @default(USER)
+  tenant            Tenant   @relation(fields: [id_tenant], references: [id])
+  sale              Sale[]
+
+  @@unique([id_tenant, name], name: "UniqueUserTenantNameIdTenant")
+  @@unique([id_tenant, email], name: "UniqueUserTenantEmailIdTenant")
+  @@index([id_tenant])
+  @@map("users_tenant")
+}
+
+model Client {
+  id                Int      @id @unique @default(autoincrement())
+  id_tenant         Int
+  id_user           Int
+  cpf               String?
+  rg                String?
+  name              String
+  profession        String?
+  phone             String
+  dn                String?
+  street            String
+  number            String
+  neighborhood      String
+  city              String
+  state             String
+  reference_point   String?
+  cep               String?
+  active            Boolean  @default(true)
+  registration_date DateTime @default(now())
+  tenant            Tenant   @relation(fields: [id_tenant], references: [id])
+  sale              Sale[]
+
+  @@unique([id_tenant, cpf], name: "UniqueClientCpfTenant")
+  @@unique([id_tenant, rg], name: "UniqueClientRgTenant")
+  @@unique([id_tenant, phone], name: "UniqueClientPhoneTenant")
+  @@index([id_tenant])
+  @@map("clients")
+}
+
+model Treatment {
+  id                Int              @id @unique @default(autoincrement())
+  id_tenant         Int
+  id_user           Int
+  name              String
+  active            Boolean          @default(true)
+  registration_date DateTime         @default(now())
+  tenant            Tenant           @relation(fields: [id_tenant], references: [id])
+  saleTreatments    SaleTreatments[]
+
+  @@index([id_tenant])
+  @@map("treatments")
+}
+
+model Lense {
+  id                Int          @id @unique @default(autoincrement())
+  id_tenant         Int
+  id_user           Int
+  name              String
+  active            Boolean      @default(true)
+  registration_date DateTime     @default(now())
+  tenant            Tenant       @relation(fields: [id_tenant], references: [id])
+  saleLenses        SaleLenses[]
+
+  @@index([id_tenant])
+  @@map("lenses")
+}
+
+model SpecialLense {
+  id                Int                 @id @unique @default(autoincrement())
+  id_tenant         Int
+  id_user           Int
+  name              String
+  active            Boolean             @default(true)
+  registration_date DateTime            @default(now())
+  tenant            Tenant              @relation(fields: [id_tenant], references: [id])
+  saleSpecialLenses SaleSpecialLenses[]
+
+  @@index([id_tenant])
+  @@map("special_lenses")
+}
+
+model Employee {
+  id                Int      @id @unique @default(autoincrement())
+  id_tenant         Int
+  id_user           Int
+  name              String
+  active            Boolean  @default(true)
+  registration_date DateTime @default(now())
+
+  tenant      Tenant        @relation(fields: [id_tenant], references: [id])
+  sale        Sale[]
+  payment     Payment[]
+  installment Installment[]
+
+  @@index([id_tenant])
+  @@map("employees")
+}
+
+model Sale {
+  id              Int      @id @unique @default(autoincrement())
+  id_client       Int
+  id_tenant       Int
+  id_user         Int
+  id_employee     Int
+  frame           String?
+  od              String?
+  oe              String?
+  addition        String?
+  obs_product     String?
+  obs_sale        String?
+  order_date      DateTime @default(now())
+  date_sale       DateTime @default(now())
+  order_delivered Boolean
+
+  client        Client              @relation(fields: [id_client], references: [id])
+  tenant        Tenant              @relation(fields: [id_tenant], references: [id])
+  user          UserTenant          @relation(fields: [id_user], references: [id])
+  employee      Employee            @relation(fields: [id_employee], references: [id])
+  payment       Payment?
+  installment   Installment[]
+  treatments    SaleTreatments[]
+  lenses        SaleLenses[]
+  specialLenses SaleSpecialLenses[]
+
+  @@index([id_client])
+  @@index([id_tenant])
+  @@index([id_user])
+  @@index([id_employee])
+  @@map("sales")
+}
+
+model Payment {
+  id                  Int       @id @unique @default(autoincrement())
+  id_sale             Int       @unique
+  id_payment_method   Int
+  id_tenant           Int
+  id_entry_receiver   Int?
+  number_installments Int?
+  value               Float
+  cash_value          Float?
+  entry_value         Float?
+  entry_date          DateTime?
+  entry_received      Boolean?
+
+  sale           Sale          @relation(fields: [id_sale], references: [id])
+  entry_receiver Employee?     @relation(fields: [id_entry_receiver], references: [id])
+  tenant         Tenant        @relation(fields: [id_tenant], references: [id])
+  form_payment   FormPayment   @relation(fields: [id_payment_method], references: [id])
+  installments   Installment[]
+
+  @@index([id_entry_receiver])
+  @@index([id_tenant])
+  @@index([id_payment_method])
+  @@map("payments")
+}
+
+model Installment {
+  id                 Int       @id @unique @default(autoincrement())
+  id_sale            Int
+  id_payment         Int
+  id_receiver        Int?
+  due_date           DateTime
+  receipt_date       DateTime?
+  value              Float
+  received           Boolean
+  installment_number Int
+
+  sale     Sale      @relation(fields: [id_sale], references: [id])
+  payment  Payment   @relation(fields: [id_payment], references: [id])
+  receiver Employee? @relation(fields: [id_receiver], references: [id])
+
+  @@index([id_receiver])
+  @@index([id_payment])
+  @@index([id_sale])
+  @@map("installments")
+}
+
+model SaleTreatments {
+  id        Int    @id @unique @default(autoincrement())
+  id_sale   Int
+  parent_id Int
+  name      String
+
+  sale      Sale      @relation(fields: [id_sale], references: [id])
+  treatment Treatment @relation(fields: [parent_id], references: [id])
+
+  @@index([id_sale])
+  @@index([parent_id])
+  @@map("sale_treatments")
+}
+
+model SaleLenses {
+  id        Int    @id @unique @default(autoincrement())
+  id_sale   Int
+  parent_id Int
+  name      String
+
+  sale  Sale  @relation(fields: [id_sale], references: [id])
+  lense Lense @relation(fields: [parent_id], references: [id])
+
+  @@index([id_sale])
+  @@index([parent_id])
+  @@map("sale_lenses")
+}
+
+model SaleSpecialLenses {
+  id        Int    @id @unique @default(autoincrement())
+  id_sale   Int
+  parent_id Int
+  name      String
+
+  sale          Sale         @relation(fields: [id_sale], references: [id])
+  special_lense SpecialLense @relation(fields: [parent_id], references: [id])
+
+  @@index([id_sale])
+  @@index([parent_id])
+  @@map("sale_special_lenses")
+}
+
+model FormPayment {
+  id        Int     @id @unique @default(autoincrement())
+  id_tenant Int
+  name      String
+  in_cash   Boolean
+  card      Boolean
+
+  tenant  Tenant    @relation(fields: [id_tenant], references: [id])
+  payment Payment[]
+
+  @@unique([id_tenant, name], name: "UniqueFormPaymentNameTenant")
+  @@index([id_tenant])
+  @@map("forms_payments")
+}
+
+//Para alterações no schema siga os seguintes passos:
+// 1- Faças alterações no schema e salve o arquivo.
+// 2 - Abra o terminal e execute npx prisma generate e npx prisma db push
+// 3 - Dê um Reload no Vscode

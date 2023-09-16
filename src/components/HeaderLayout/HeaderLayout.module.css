@@ -44,28 +44,27 @@
 
 .rightSide .searchArea {
     width: 44px;
+    max-width: 300px;
     height: 38px;
     display: none;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     padding: 0;
     overflow: hidden;
-    transition: all .3s ease;
+    transition: all .6s ease;
     margin-left: var(--small3);
 }
 
 .rightSide .searchArea input {
     width: 0;
     border: none;
-    padding: var(--small1);
+    padding: 0;
     outline: 0;
     font-size: var(--medium1);
     height: 100%;
-    transition: all 1s ease-in-out;
 }
 
 .rightSide .searchArea.active {
-    max-width: 300px;
     flex: 1;
     border: 1px solid var(--borderColor);
     border-radius: var(--small2);
@@ -73,6 +72,7 @@
 
 .rightSide .searchArea.active input {
     width: 100%;
+    padding: var(--small1);
 }
 
 .containerNotification {
