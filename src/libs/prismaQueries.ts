@@ -4,6 +4,7 @@ import { SalesSummaryStatus } from "@/types/salesSummary";
 import { Tenant } from "@/types/Tenant";
 import { User } from "@/types/User";
 import prisma from "./prisma";
+import JWT from "jsonwebtoken";
 
 export const getTenantFromSlug = async (
     slug: string,
@@ -21,19 +22,51 @@ export const getTenantFromSlug = async (
         },
     });
 };
+
+export const getUserTenantFromEmail = async (
+    email: string,
+    id_tenant: number,
+) => {
+    return await prisma.userTenant.findFirst({
+        where: {
+            email,
+            id_tenant,
+        },
+    });
+};
 export const authorizeToken = async (
     token: string,
-): Promise<User | undefined> => {
-    if (token === "wandersonbarradas07@gmail.com") {
-        return {
-            id: 1,
-            name: "Wanderson Barradas de Morais",
-            email: "wandersonbarradas07@gmail.com",
-            active: true,
-            registration_date: new Date("2023/08/27").toISOString(),
-            id_tenant: 2,
-        };
+    id_tenant: number,
+): Promise<User | null> => {
+    if (!token) return null;
+    try {
+        const secret = process.env.SECRET_KEY as string;
+        const payload = JWT.verify(token, secret, {
+            issuer: "tenant-optica", // Opcional: verifica se o token foi emitido pela aplicação correta
+        }) as JWT.JwtPayload;
+
+        if (id_tenant === payload.id_tenant) {
+            const user = await getUserTenantFromEmail(
+                payload.email,
+                payload.id_tenant,
+            );
+
+            if (user) {
+                return {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    active: user.active,
+                    registration_date: user.registration_date.toISOString(),
+                    id_tenant: user.id_tenant,
+                };
+            }
+        }
+    } catch (err) {
+        // O token é inválido ou expirou
+        console.error(err);
     }
+    return null;
 };
 export const getSales = async (
     idTenant: number,

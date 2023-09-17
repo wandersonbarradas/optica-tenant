@@ -22,7 +22,7 @@ export default async function TenantLayout({ children, params }: Props) {
     //Autenticando usuario via Token no Cookies
     const cookieStore = cookies();
     const token = cookieStore.get("token");
-    const user = await authorizeToken(token?.value as string);
+    const user = await authorizeToken(token?.value as string, tenant.id);
 
     if (!user) {
         return <>{children}</>;

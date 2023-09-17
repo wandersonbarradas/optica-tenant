@@ -11,7 +11,7 @@ import { Validate } from "@/utils/validateForm";
 import { Alert } from "@/types/Alert";
 import { AlertComponent } from "@/components/Alert";
 import { authLogin } from "@/utils/ApiFront";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/contexts/auth";
 
 type Props = {
@@ -78,26 +78,23 @@ export const Login = ({ tenant }: Props) => {
     };
 
     const auth = async (email: string, password: string) => {
-        const result = await authLogin(email, password);
-        if (result.state) {
+        const result = await authLogin(email, password, tenant.slug);
+        if (result.status) {
             setAlerts([
                 ...alerts,
                 {
-                    message: result.message,
+                    message: "Login bem sucedido!",
                     type: "success",
                     id: alerts[alerts.length - 1]?.id + 1 ?? 1,
                 },
             ]);
-
-            setToken(result.token);
-            setUser(result.user);
+            setToken(result.data);
             router.refresh();
         } else {
-            const err = result.message;
             setAlerts([
                 ...alerts,
                 {
-                    message: err,
+                    message: result.data,
                     type: "error",
                     id: alerts[alerts.length - 1]?.id + 1 ?? 1,
                 },

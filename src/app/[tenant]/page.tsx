@@ -21,7 +21,7 @@ export default async function Page({ params }: Props) {
     const cookieStore = cookies();
     const token = cookieStore.get("token");
     if (!token) return redirect(`/${params.tenant}/login`);
-    const user = await authorizeToken(token.value);
+    const user = await authorizeToken(token?.value as string, tenant.id);
     if (!user) return redirect(`/${params.tenant}/login`);
     //Pegando ultimas vendas
     const [lastSales, sumByMonth, resumeWeek] = await Promise.all([

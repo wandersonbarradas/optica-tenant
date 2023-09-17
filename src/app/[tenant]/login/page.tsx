@@ -16,7 +16,7 @@ export default async function Page({ params }: PropsPage) {
     //Autorizando usuario via token
     const cookieStore = cookies();
     const token = cookieStore.get("token");
-    const user = await authorizeToken(token?.value as string);
+    const user = await authorizeToken(token?.value as string, tenant.id);
     if (user) {
         return redirect(`/${tenant.slug}`);
     }
