@@ -18,9 +18,10 @@ export const authLogin = async (
     password: string,
     tenantSlug: string,
 ): Promise<{ status: boolean; data: string }> => {
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("tenant:", tenantSlug);
+    let data = {
+        status: false,
+        data: "",
+    };
     try {
         const req = await fetch(`/api/${tenantSlug}/login`, {
             method: "POST",
@@ -33,15 +34,11 @@ export const authLogin = async (
             }),
         });
         const result = await req.json();
-        return {
-            status: req.ok,
-            data: result.response,
-        };
+        data.data = result.response;
+        data.status = req.ok;
     } catch (error) {
         console.log(error);
-        return {
-            status: false,
-            data: "Erro desconhecido!",
-        };
+        data.data = "Error desconhecido, verifique o console do navegador!";
     }
+    return data;
 };
