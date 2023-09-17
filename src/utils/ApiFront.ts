@@ -18,6 +18,9 @@ export const authLogin = async (
     password: string,
     tenantSlug: string,
 ): Promise<{ status: boolean; data: string }> => {
+    console.log("Email:", email);
+    console.log("Password:", password);
+    console.log("tenant:", tenantSlug);
     try {
         const req = await fetch(`/api/${tenantSlug}/login`, {
             method: "POST",
