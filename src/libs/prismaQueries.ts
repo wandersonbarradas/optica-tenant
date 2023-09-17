@@ -57,7 +57,6 @@ export const authorizeToken = async (
                     name: user.name,
                     email: user.email,
                     active: user.active,
-                    registration_date: user.registration_date.toISOString(),
                     id_tenant: user.id_tenant,
                 };
             }

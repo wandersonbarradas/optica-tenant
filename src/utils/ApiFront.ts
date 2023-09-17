@@ -18,19 +18,27 @@ export const authLogin = async (
     password: string,
     tenantSlug: string,
 ): Promise<{ status: boolean; data: string }> => {
-    const req = await fetch(`/api/${tenantSlug}/login`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            email,
-            password,
-        }),
-    });
-    const result = await req.json();
-    return {
-        status: req.ok,
-        data: result.response,
-    };
+    try {
+        const req = await fetch(`/api/${tenantSlug}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email,
+                password,
+            }),
+        });
+        const result = await req.json();
+        return {
+            status: req.ok,
+            data: result.response,
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            status: false,
+            data: "Erro desconhecido!",
+        };
+    }
 };

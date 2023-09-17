@@ -99,6 +99,7 @@ export const Login = ({ tenant }: Props) => {
                     id: alerts[alerts.length - 1]?.id + 1 ?? 1,
                 },
             ]);
+            setToken("");
         }
     };
 
