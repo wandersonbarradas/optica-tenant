@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request, params: { tenant: string }) {
     const data: { password: string; email: string } = await request.json();
-
+    console.log("Data", data);
     if (!data.email || !data.password) {
         const body = JSON.stringify({
             response: "Email e/ou senha inválidos!",
