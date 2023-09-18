@@ -51,7 +51,7 @@ export const authorizeToken = async (
                 payload.id_tenant,
             );
 
-            if (user) {
+            if (user && user.active) {
                 return {
                     id: user.id,
                     name: user.name,

@@ -1,0 +1,98 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--medium2);
+}
+
+.header .title {
+    font-size: var(--medium3);
+    font-weight: 600;
+}
+
+.header .btnAdd {
+    border: 0;
+    outline: 0;
+    font-size: var(--medium1);
+    background-color: var(--verdantGreen);
+    color: var(--white);
+    padding: var(--small3) var(--medium3);
+    border-radius: var(--small2);
+    transition: all .2s ease;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.header .btnAdd:hover {
+    background-color: var(--jungleGreen);
+}
+
+.table {
+    background-color: var(--white);
+    border-radius: var(--small2);
+    border: 1px solid var(--borderColor);
+    padding: 0 0 var(--medium1) 0;
+}
+
+.tableHeader {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    border-bottom: 1px solid var(--borderColor);
+}
+
+.tableCell {
+    padding: var(--medium1);
+    font-size: var(--medium1);
+    color: var(--colorPrimary);
+}
+
+.tableHeader .tableCell {
+    color: var(--ashenGray);
+    font-weight: 500;
+}
+
+.full {
+    grid-column: 1 / span 2;
+}
+
+.tableItem {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    border-bottom: 1px solid var(--borderColor);
+}
+
+.tableActions {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--small2);
+    padding: var(--medium1);
+}
+
+.tableActions .btn {
+    width: 100%;
+    padding: var(--small1) var(--small2);
+    font-size: var(--small3);
+    border-radius: var(--small1);
+    border: 0;
+    outline: 0;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.tableActions .btnEdit {
+    background-color: var(--royalBlue);
+}
+
+.tableActions .btnDelete {
+    background-color: var(--crimson);
+}
+
+@media (min-width: 768px) {
+    .tableActions {
+        flex-direction: row;
+    }
+}

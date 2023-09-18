@@ -21,6 +21,15 @@ export async function POST(request: Request, params: { tenant: string }) {
             status: 401,
         });
     }
+    if (!user.active) {
+        const body = JSON.stringify({
+            response:
+                "Usuário está desativado, contate o administrador do sistema!",
+        });
+        return new Response(body, {
+            status: 401,
+        });
+    }
     if (user.password !== data.password) {
         const body = JSON.stringify({
             response: "Senha incorreta!",
@@ -30,19 +39,27 @@ export async function POST(request: Request, params: { tenant: string }) {
         });
     }
     const secret = process.env.SECRET_KEY as string;
-
-    const token = jwt.sign(
-        {
-            email: user.email,
-            id_tenant: user.id_tenant,
-            name: user.name,
-        },
-        secret,
-        {
-            expiresIn: "30d",
-            subject: user.id.toString(),
-            issuer: "tenant-optica",
-        },
-    );
-    return NextResponse.json({ response: token });
+    try {
+        const token = jwt.sign(
+            {
+                email: user.email,
+                id_tenant: user.id_tenant,
+                name: user.name,
+            },
+            secret,
+            {
+                expiresIn: "1d",
+                subject: user.id.toString(),
+                issuer: "tenant-optica",
+            },
+        );
+        return NextResponse.json({ response: token });
+    } catch (error) {
+        const body = JSON.stringify({
+            response: "Erro ao gerar token!",
+        });
+        return new Response(body, {
+            status: 500,
+        });
+    }
 }
