@@ -16,8 +16,8 @@
     font-size: var(--medium1);
     background-color: var(--verdantGreen);
     color: var(--white);
-    padding: var(--small3) var(--medium3);
-    border-radius: var(--small2);
+    padding: var(--small2) var(--medium3);
+    border-radius: var(--small1);
     transition: all .2s ease;
     font-weight: 500;
     cursor: pointer;
@@ -74,8 +74,9 @@
 
 .tableActions .btn {
     width: 100%;
+    max-width: 100px;
     padding: var(--small1) var(--small2);
-    font-size: var(--small3);
+    font-size: var(--medium1);
     border-radius: var(--small1);
     border: 0;
     outline: 0;
@@ -91,8 +92,109 @@
     background-color: var(--crimson);
 }
 
+.containerModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: grid;
+    place-items: center;
+}
+
+.containerModal .content {
+    width: 90%;
+    max-width: 600px;
+    background-color: var(--bgPrimary);
+    border-radius: 12px;
+    padding: var(--small3);
+}
+
+.contentHeader h4 {
+    text-align: center;
+    margin-bottom: var(--medium2);
+    font-weight: 600;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--medium1);
+}
+
+.gridContainer .col_2 {
+    grid-column: 1 / span 2;
+}
+
+.gridContainer .col_10 {
+    grid-column: 3 / span 10;
+}
+
+.messageAlert {
+    text-align: center;
+    margin: 2rem 0;
+    font-weight: 500;
+}
+
+.actions {
+    display: flex;
+    gap: var(--medium1);
+    margin-top: var(--medium1);
+    justify-content: flex-end;
+    justify-content: center;
+}
+
+.btnModal {
+    font-size: var(--medium1);
+    padding: var(--small2);
+    border-radius: var(--small2);
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    font-family: var(--fontMontserrat);
+    color: white;
+    transition: all .2s ease;
+}
+
+.btnModal.cancel {
+    background-color: var(--crimson);
+}
+
+.btnModal.cancel:hover {
+    background-color: var(--darkCrimson);
+}
+
+.btnModal:disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
+
+.btnModal.conclude {
+    background-color: var(--verdantGreen);
+}
+
+.btnModal.conclude:hover {
+    background-color: var(--jungleGreen);
+}
+
 @media (min-width: 768px) {
     .tableActions {
         flex-direction: row;
+        justify-content: flex-start;
+    }
+}
+
+@media (min-width: 1024px) {
+    .tableHeader {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .full {
+        grid-column: 1 / span 3;
+    }
+
+    .tableItem {
+        grid-template-columns: repeat(4, 1fr);
     }
 }

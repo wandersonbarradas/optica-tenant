@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import styles from "./Alert.module.css";
-//import { useAlertContext } from "@/contexts/alert";
 import { Alert } from "@/types/Alert";
+import { useAlertContext } from "@/contexts/alert";
 
 type Props = {
     item: Alert;
 };
 
 export const AlertComponent = ({ item }: Props) => {
-    //const { removeAlert } = useAlertContext();
+    const { removeAlert } = useAlertContext();
     const [showAlert, setShowAlert] = useState(true);
     const [position, setPosition] = useState(false);
 
@@ -25,6 +25,7 @@ export const AlertComponent = ({ item }: Props) => {
     }, [showAlert]);
 
     const handleAlertClose = () => {
+        removeAlert(item.id);
         closeAlert();
     };
 
@@ -32,7 +33,6 @@ export const AlertComponent = ({ item }: Props) => {
         setPosition(false);
         setTimeout(() => {
             setShowAlert(false);
-            //removeAlert(item.id);
         }, 300);
     };
 

@@ -109,28 +109,24 @@ export const AsideLayout = ({ setShowMenu, showMenu }: Props) => {
                     >
                         <ul>
                             <NavItem
-                                link={`/${tenant?.slug}/outros/funcionarios`}
+                                link={`/${tenant?.slug}/mais/funcionarios`}
                                 label="Funcionários"
                                 icon={BadgeOutlinedIcon}
-                                disabled
                             />
                             <NavItem
-                                link={`/${tenant?.slug}/outros/tratamentos`}
+                                link={`/${tenant?.slug}/mais/tratamentos`}
                                 label="Tratamentos"
                                 icon={RemoveRedEyeOutlinedIcon}
-                                disabled
                             />
                             <NavItem
-                                link={`/${tenant?.slug}/outros/lentes`}
+                                link={`/${tenant?.slug}/mais/lentes`}
                                 label="Lentes"
                                 icon={RemoveRedEyeOutlinedIcon}
-                                disabled
                             />
                             <NavItem
-                                link={`/${tenant?.slug}/outros/lentes-especiais`}
+                                link={`/${tenant?.slug}/mais/lentes-especiais`}
                                 label="Lentes especiais"
                                 icon={RemoveRedEyeOutlinedIcon}
-                                disabled
                             />
                         </ul>
                     </div>

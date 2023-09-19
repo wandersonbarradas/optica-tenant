@@ -22,7 +22,6 @@ export const getTenantFromSlug = async (
         },
     });
 };
-
 export const getUserTenantFromEmail = async (
     email: string,
     id_tenant: number,

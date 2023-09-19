@@ -10,7 +10,9 @@ import { Loader } from "../Loader";
 import { AsideLayout } from "../AsideLayout";
 import { HeaderLayout } from "../HeaderLayout";
 import { useAuthContext } from "@/contexts/auth";
+import { useAlertContext } from "@/contexts/alert";
 import { User } from "@/types/User";
+import { AlertComponent } from "../Alert";
 
 type Props = {
     tenant: Tenant;
@@ -19,6 +21,7 @@ type Props = {
 };
 
 export const Layout = ({ children, tenant, user }: Props) => {
+    const { alert } = useAlertContext();
     const { setUser } = useAuthContext();
     const [showMenu, setShowMenu] = useState(false);
     const { setTenant } = useTenantContext();
@@ -42,6 +45,15 @@ export const Layout = ({ children, tenant, user }: Props) => {
     }
     return (
         <div className={styles.container}>
+            {alert.length > 0 && (
+                <div className="alertError">
+                    <ul className="listError">
+                        {alert.map((item, index) => (
+                            <AlertComponent item={item} key={index} />
+                        ))}
+                    </ul>
+                </div>
+            )}
             <AsideLayout setShowMenu={setShowMenu} showMenu={showMenu} />
             <div className={[styles.layoutMain, "scroll"].join(" ")}>
                 <HeaderLayout setShowMenu={setShowMenu} />

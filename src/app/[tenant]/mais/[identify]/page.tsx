@@ -31,5 +31,5 @@ export default async function name({ params }: Props) {
     if (!user) {
         return redirect(`/${tenant.slug}/login`);
     }
-    return <More title={params.identify} />;
+    return <More tenant={params.tenant} title={params.identify} />;
 }
