@@ -1,10 +1,12 @@
-import { GetSalesConfig, SumByMonth, SumByWeek } from "@/types/Api";
+import { GetSalesConfig, ProductApi, SumByMonth, SumByWeek } from "@/types/Api";
 import { Sale, SaleBasic } from "@/types/Sale";
 import { SalesSummaryStatus } from "@/types/salesSummary";
 import { Tenant } from "@/types/Tenant";
 import { User } from "@/types/User";
 import prisma from "./prisma";
 import JWT from "jsonwebtoken";
+import { cookies } from "next/headers";
+import { TitlesMore } from "@/types/TitlesMore";
 
 export const getTenantFromSlug = async (
     slug: string,
@@ -32,39 +34,6 @@ export const getUserTenantFromEmail = async (
             id_tenant,
         },
     });
-};
-export const authorizeToken = async (
-    token: string,
-    id_tenant: number,
-): Promise<User | null> => {
-    if (!token) return null;
-    try {
-        const secret = process.env.SECRET_KEY as string;
-        const payload = JWT.verify(token, secret, {
-            issuer: "tenant-optica", // Opcional: verifica se o token foi emitido pela aplicação correta
-        }) as JWT.JwtPayload;
-
-        if (id_tenant === payload.id_tenant) {
-            const user = await getUserTenantFromEmail(
-                payload.email,
-                payload.id_tenant,
-            );
-
-            if (user && user.active) {
-                return {
-                    id: user.id,
-                    name: user.name,
-                    email: user.email,
-                    active: user.active,
-                    id_tenant: user.id_tenant,
-                };
-            }
-        }
-    } catch (err) {
-        // O token é inválido ou expirou
-        console.error(err);
-    }
-    return null;
 };
 export const getSales = async (
     idTenant: number,
@@ -331,7 +300,302 @@ export const getSalesSummaryStatus = async (
     //     `;
     // return result;
 };
+export const addItemProduct = async (
+    dataProduct: ProductApi,
+    identify: TitlesMore,
+) => {
+    switch (identify) {
+        case "funcionarios":
+            return await prisma.employee.create({
+                data: dataProduct,
+                select: {
+                    id: true,
+                    name: true,
+                },
+            });
+        case "lentes":
+            return await prisma.lense.create({
+                data: dataProduct,
+                select: {
+                    id: true,
+                    name: true,
+                },
+            });
+        case "lentes-especiais":
+            return await prisma.specialLense.create({
+                data: dataProduct,
+                select: {
+                    id: true,
+                    name: true,
+                },
+            });
+        case "tratamentos":
+            return await prisma.treatment.create({
+                data: dataProduct,
+                select: {
+                    id: true,
+                    name: true,
+                },
+            });
+        default:
+            return null;
+    }
+};
+export const getItemsProduct = async (
+    id_tenant: number,
+    identify: TitlesMore,
+) => {
+    switch (identify) {
+        case "funcionarios":
+            return await prisma.employee.findMany({
+                where: {
+                    id_tenant,
+                    active: true,
+                },
+                select: {
+                    id: true,
+                    name: true,
+                },
+            });
+        case "lentes":
+            return await prisma.lense.findMany({
+                where: {
+                    id_tenant,
+                    active: true,
+                },
+                select: {
+                    id: true,
+                    name: true,
+                },
+            });
+        case "lentes-especiais":
+            return await prisma.specialLense.findMany({
+                where: {
+                    id_tenant,
+                    active: true,
+                },
+                select: {
+                    id: true,
+                    name: true,
+                },
+            });
+        case "tratamentos":
+            return await prisma.treatment.findMany({
+                where: {
+                    id_tenant,
+                    active: true,
+                },
+                select: {
+                    id: true,
+                    name: true,
+                },
+            });
+        default:
+            return null;
+    }
+};
+export const getItemProduct = async (id: number, identify: TitlesMore) => {
+    switch (identify) {
+        case "funcionarios":
+            return await prisma.employee.findUnique({
+                where: {
+                    id,
+                },
+                select: {
+                    id: true,
+                    name: true,
+                },
+            });
+        case "lentes":
+            return await prisma.lense.findUnique({
+                where: {
+                    id,
+                },
+                select: {
+                    id: true,
+                    name: true,
+                },
+            });
+        case "lentes-especiais":
+            return await prisma.specialLense.findUnique({
+                where: {
+                    id,
+                },
+                select: {
+                    id: true,
+                    name: true,
+                },
+            });
+        case "tratamentos":
+            return await prisma.treatment.findUnique({
+                where: {
+                    id,
+                },
+                select: {
+                    id: true,
+                    name: true,
+                },
+            });
+        default:
+            return null;
+    }
+};
+export const softDeleteItemProduct = async (
+    id: number,
+    identify: TitlesMore,
+) => {
+    switch (identify) {
+        case "funcionarios":
+            return await prisma.employee.update({
+                where: {
+                    id: id,
+                },
+                data: {
+                    active: false,
+                },
+                select: {
+                    name: true,
+                    id: true,
+                },
+            });
+        case "lentes":
+            return await prisma.lense.update({
+                where: {
+                    id: id,
+                },
+                data: {
+                    active: false,
+                },
+                select: {
+                    name: true,
+                    id: true,
+                },
+            });
+        case "lentes-especiais":
+            return await prisma.specialLense.update({
+                where: {
+                    id: id,
+                },
+                data: {
+                    active: false,
+                },
+                select: {
+                    name: true,
+                    id: true,
+                },
+            });
+        case "tratamentos":
+            return await prisma.treatment.update({
+                where: {
+                    id: id,
+                },
+                data: {
+                    active: false,
+                },
+                select: {
+                    name: true,
+                    id: true,
+                },
+            });
+        default:
+            return null;
+    }
+};
+export const updateItemProduct = async (
+    data: { name: string; id: number },
+    identify: TitlesMore,
+) => {
+    switch (identify) {
+        case "funcionarios":
+            return await prisma.employee.update({
+                where: {
+                    id: data.id,
+                },
+                data: {
+                    name: data.name,
+                },
+                select: {
+                    name: true,
+                    id: true,
+                },
+            });
+        case "lentes":
+            return await prisma.lense.update({
+                where: {
+                    id: data.id,
+                },
+                data: {
+                    name: data.name,
+                },
+                select: {
+                    name: true,
+                    id: true,
+                },
+            });
+        case "lentes-especiais":
+            return await prisma.specialLense.update({
+                where: {
+                    id: data.id,
+                },
+                data: {
+                    name: data.name,
+                },
+                select: {
+                    name: true,
+                    id: true,
+                },
+            });
+        case "tratamentos":
+            return await prisma.treatment.update({
+                where: {
+                    id: data.id,
+                },
+                data: {
+                    name: data.name,
+                },
+                select: {
+                    name: true,
+                    id: true,
+                },
+            });
+        default:
+            return null;
+    }
+};
+export const authorizeToken = async (
+    id_tenant: number,
+): Promise<User | null> => {
+    const cookieStore = cookies();
+    const token = cookieStore.get("token");
+    if (!token) return null;
+    try {
+        const secret = process.env.SECRET_KEY as string;
+        const payload = JWT.verify(token.value, secret, {
+            issuer: "tenant-optica", // Opcional: verifica se o token foi emitido pela aplicação correta
+        }) as JWT.JwtPayload;
 
+        if (id_tenant === payload.id_tenant) {
+            const user = await getUserTenantFromEmail(
+                payload.email,
+                payload.id_tenant,
+            );
+
+            if (user && user.active) {
+                return {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    active: user.active,
+                    id_tenant: user.id_tenant,
+                };
+            }
+        }
+    } catch (err) {
+        // O token é inválido ou expirou
+        console.error(err);
+    }
+    return null;
+};
 const selectBasic = {
     id: true,
     client: {

@@ -1,8 +1,11 @@
-import { authorizeToken, getTenantFromSlug } from "@/libs/prismaQueries";
+import {
+    authorizeToken,
+    getTenantFromSlug,
+    getItemsProduct,
+} from "@/libs/prismaQueries";
 import { More } from "@/pages-components/More";
 import { TitlesMore } from "@/types/TitlesMore";
 import { Metadata } from "next";
-import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 
 const titles = ["lentes", "lentes-especiais", "tratamentos", "funcionarios"];
@@ -25,11 +28,11 @@ export default async function name({ params }: Props) {
         return redirect("/");
     }
     //Autenticando usuario via Token no Cookies
-    const cookieStore = cookies();
-    const token = cookieStore.get("token");
-    const user = await authorizeToken(token?.value as string, tenant.id);
+    const user = await authorizeToken(tenant.id);
     if (!user) {
         return redirect(`/${tenant.slug}/login`);
     }
-    return <More tenant={params.tenant} title={params.identify} />;
+    //Pegando Dados do banco de dados
+    const data = await getItemsProduct(tenant.id, params.identify);
+    return <More data={data} tenant={params.tenant} title={params.identify} />;
 }

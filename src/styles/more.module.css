@@ -92,6 +92,13 @@
     background-color: var(--crimson);
 }
 
+.noContent {
+    font-size: var(--medium2);
+    font-weight: var(--weightMedium);
+    text-align: center;
+    margin: 2rem 0;
+}
+
 .containerModal {
     position: absolute;
     top: 0;

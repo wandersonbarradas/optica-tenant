@@ -11,8 +11,6 @@ import { ChartLineComplete } from "@/components/chartLineComplete";
 import { TableSales } from "@/components/tableSales";
 
 type Props = {
-    user: User;
-    token: string;
     lastSales: SaleBasic[];
     sumByMonth: SumByMonth;
     resumeWeek: SumByWeek;

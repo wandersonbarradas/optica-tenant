@@ -7,7 +7,6 @@ import {
 } from "@/libs/prismaQueries";
 import { Dashboard } from "../../pages-components/Dashboard";
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 
 type Props = {
     params: { tenant: string };
@@ -18,10 +17,7 @@ export default async function Page({ params }: Props) {
     const tenant = await getTenantFromSlug(params.tenant);
     if (!tenant || tenant.status === "OFFLINE") return redirect("/");
     //Autenticando usuario via Token no Cookies
-    const cookieStore = cookies();
-    const token = cookieStore.get("token");
-    if (!token) return redirect(`/${params.tenant}/login`);
-    const user = await authorizeToken(token?.value as string, tenant.id);
+    const user = await authorizeToken(tenant.id);
     if (!user) return redirect(`/${params.tenant}/login`);
     //Pegando ultimas vendas
     const [lastSales, sumByMonth, resumeWeek] = await Promise.all([
@@ -35,8 +31,6 @@ export default async function Page({ params }: Props) {
     ]);
     return (
         <Dashboard
-            user={user}
-            token={token.value}
             lastSales={lastSales}
             sumByMonth={sumByMonth}
             resumeWeek={resumeWeek}

@@ -1,5 +1,4 @@
 import { authorizeToken, getTenantFromSlug } from "@/libs/prismaQueries";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 type Props = {
@@ -13,9 +12,7 @@ const Id = async ({ params }: Props) => {
         return redirect("/");
     }
     //Autenticando usuario via Token no Cookies
-    const cookieStore = cookies();
-    const token = cookieStore.get("token");
-    const user = await authorizeToken(token?.value as string, tenant.id);
+    const user = await authorizeToken(tenant.id);
     if (!user) {
         return redirect(`/${tenant.slug}/login`);
     }

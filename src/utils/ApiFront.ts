@@ -1,4 +1,5 @@
 import { NotificationType } from "@/types/NotificationItemType";
+import { TitlesMore } from "@/types/TitlesMore";
 
 export const authLogin = async (
     email: string,
@@ -51,7 +52,7 @@ type ReturnCreateProduct = {
 };
 export const createProductData = async (
     name: string,
-    identify: string,
+    identify: TitlesMore,
     tenant: string,
 ): Promise<ReturnCreateProduct> => {
     let data: ReturnCreateProduct = {
@@ -64,8 +65,53 @@ export const createProductData = async (
     });
     data.status = req.ok;
     const response = await req.json();
-    if (response.ok) {
-        data.data = response.response;
+    if (req.ok) {
+        data.data = response;
+    } else {
+        data.error = response.error;
+    }
+    return data;
+};
+
+export const updateProductData = async (
+    item: { id: number; name: string },
+    identify: TitlesMore,
+    tenant: string,
+): Promise<ReturnCreateProduct> => {
+    let data: ReturnCreateProduct = {
+        status: false,
+    };
+    const req = await fetch(`/api/${tenant}/mais/${identify}/${item.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: item.name }),
+    });
+    data.status = req.ok;
+    const response = await req.json();
+    if (req.ok) {
+        data.data = response;
+    } else {
+        data.error = response.error;
+    }
+    return data;
+};
+
+export const deleteProductData = async (
+    id: number,
+    identify: TitlesMore,
+    tenant: string,
+): Promise<ReturnCreateProduct> => {
+    let data: ReturnCreateProduct = {
+        status: false,
+    };
+    const req = await fetch(`/api/${tenant}/mais/${identify}/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+    });
+    data.status = req.ok;
+    const response = await req.json();
+    if (req.ok) {
+        data.data = response;
     } else {
         data.error = response.error;
     }

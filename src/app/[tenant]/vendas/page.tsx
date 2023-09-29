@@ -6,7 +6,6 @@ import {
     getTenantFromSlug,
 } from "@/libs/prismaQueries";
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 
 type Props = {
     params: { tenant: string };
@@ -18,9 +17,7 @@ const Vendas = async ({ params, searchParams }: any) => {
     const tenant = await getTenantFromSlug(params.tenant);
     if (!tenant || tenant.status === "OFFLINE") return redirect("/");
     //Autenticando usuario via Token no Cookies
-    const cookieStore = cookies();
-    const token = cookieStore.get("token");
-    const user = await authorizeToken(token?.value as string, tenant.id);
+    const user = await authorizeToken(tenant.id);
     if (!user) {
         return redirect(`/${tenant.slug}/login`);
     }
