@@ -19,6 +19,9 @@ type Props = {
     params: { tenant: string; identify: TitlesMore };
 };
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 export default async function name({ params }: Props) {
     if (!titles.includes(params.identify)) {
         notFound();

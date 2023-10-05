@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const id = params.id;
@@ -22,8 +24,5 @@ type Props = {
 };
 
 export default async function TenantLayout({ children, params }: Props) {
-    if (params.id !== "nova" && isNaN(parseInt(params.id))) {
-        notFound();
-    }
     return <>{children}</>;
 }

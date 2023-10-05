@@ -174,7 +174,7 @@ export const More = ({ title, tenant, data }: Props) => {
                 <div className={styles.table}>
                     {productData.length === 0 && (
                         <div className={styles.noContent}>
-                            Sem {title} para exibir! 👻👻👻
+                            Sem {title.replace(/-/g, " ")} para exibir! 👻👻👻
                         </div>
                     )}
                     {productData.length > 0 && (

@@ -8,6 +8,8 @@ import JWT from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { TitlesMore } from "@/types/TitlesMore";
 
+export const revalidate = 0;
+
 export const getTenantFromSlug = async (
     slug: string,
 ): Promise<Tenant | null> => {
@@ -240,6 +242,15 @@ export const getSales = async (
     //     orderBy,
     //     select
     // });
+};
+export const getSaleFromId = async (id: number, idTenant: number) => {
+    return await prisma.sale.findFirst({
+        where: {
+            id_tenant: idTenant,
+            id,
+        },
+        select: selectFull,
+    });
 };
 export const getSumByMonth = async (idTenant: number): Promise<SumByMonth> => {
     let months = {
@@ -561,6 +572,19 @@ export const updateItemProduct = async (
         default:
             return null;
     }
+};
+export const getFormsPayments = async (idTenant: number) => {
+    return await prisma.formPayment.findMany({
+        where: {
+            id_tenant: idTenant,
+        },
+        select: {
+            id: true,
+            card: true,
+            name: true,
+            in_cash: true,
+        },
+    });
 };
 export const authorizeToken = async (
     id_tenant: number,
