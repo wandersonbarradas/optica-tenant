@@ -17,9 +17,6 @@ type Props = {
     data: GeneralProduct[] | null;
 };
 
-export const revalidate = 0;
-export const dynamic = "force-dynamic";
-
 export const More = ({ title, tenant, data }: Props) => {
     const { setAlert } = useAlertContext();
     const [modalShow, setModalShow] = useState(false);
@@ -31,10 +28,11 @@ export const More = ({ title, tenant, data }: Props) => {
     const [productData, setProductData] = useState<GeneralProduct[]>([]);
 
     useEffect(() => {
+        console.log("Componente client side: ", data);
         if (data) {
             setProductData(data);
         }
-    }, []);
+    }, [data]);
 
     const formatString = (str: string) => {
         str = str.replace(/-/g, " ");
@@ -307,3 +305,5 @@ export const More = ({ title, tenant, data }: Props) => {
         </>
     );
 };
+
+export const revalidate = 0;

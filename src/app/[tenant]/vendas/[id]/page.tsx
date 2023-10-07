@@ -13,9 +13,6 @@ type Props = {
     params: { id: string; tenant: string };
 };
 
-export const revalidate = 0;
-export const dynamic = "force-dynamic";
-
 const Id = async ({ params }: Props) => {
     //validando tenant
     const tenant = await getTenantFromSlug(params.tenant);

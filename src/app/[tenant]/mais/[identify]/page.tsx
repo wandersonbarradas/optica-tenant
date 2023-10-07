@@ -9,6 +9,7 @@ import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
 const titles = ["lentes", "lentes-especiais", "tratamentos", "funcionarios"];
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title: `Dev-${params.identify}`,
@@ -18,9 +19,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 type Props = {
     params: { tenant: string; identify: TitlesMore };
 };
-
-export const revalidate = 0;
-export const dynamic = "force-dynamic";
 
 export default async function name({ params }: Props) {
     if (!titles.includes(params.identify)) {
@@ -37,5 +35,6 @@ export default async function name({ params }: Props) {
     }
     //Pegando Dados do banco de dados
     const data = await getItemsProduct(tenant.id, params.identify);
+    console.log("Page Mais Server Side: ", data);
     return <More data={data} tenant={params.tenant} title={params.identify} />;
 }

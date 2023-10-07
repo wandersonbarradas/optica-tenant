@@ -358,7 +358,7 @@ export const getItemsProduct = async (
 ) => {
     switch (identify) {
         case "funcionarios":
-            return await prisma.employee.findMany({
+            const data = await prisma.employee.findMany({
                 where: {
                     id_tenant,
                     active: true,
@@ -368,8 +368,10 @@ export const getItemsProduct = async (
                     name: true,
                 },
             });
+            console.log("Prisma:", data);
+            return data;
         case "lentes":
-            return await prisma.lense.findMany({
+            const data2 = await prisma.lense.findMany({
                 where: {
                     id_tenant,
                     active: true,
@@ -379,8 +381,10 @@ export const getItemsProduct = async (
                     name: true,
                 },
             });
+            console.log("Prisma:", data2);
+            return data2;
         case "lentes-especiais":
-            return await prisma.specialLense.findMany({
+            const data3 = await prisma.specialLense.findMany({
                 where: {
                     id_tenant,
                     active: true,
@@ -390,8 +394,10 @@ export const getItemsProduct = async (
                     name: true,
                 },
             });
+            console.log("Prisma:", data3);
+            return data3;
         case "tratamentos":
-            return await prisma.treatment.findMany({
+            const data4 = await prisma.treatment.findMany({
                 where: {
                     id_tenant,
                     active: true,
@@ -401,6 +407,8 @@ export const getItemsProduct = async (
                     name: true,
                 },
             });
+            console.log("Prisma:", data4);
+            return data4;
         default:
             return null;
     }

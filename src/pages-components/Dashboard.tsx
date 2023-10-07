@@ -1,7 +1,6 @@
 "use client";
 import styles from "@/styles/dashboard.module.css";
 import { useEffect, useState } from "react";
-import { User } from "@/types/User";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { ChartLineSimple } from "@/components/chartLineSimple";
 import { SaleBasic } from "@/types/Sale";
