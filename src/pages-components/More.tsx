@@ -17,6 +17,9 @@ type Props = {
     data: GeneralProduct[] | null;
 };
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 export const More = ({ title, tenant, data }: Props) => {
     const { setAlert } = useAlertContext();
     const [modalShow, setModalShow] = useState(false);
