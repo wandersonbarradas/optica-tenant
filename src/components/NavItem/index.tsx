@@ -4,7 +4,7 @@ import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import Link from "next/link";
 import styles from "./navItem.module.css";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useTenantContext } from "@/contexts/tenant/hook";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import { useEffect, useState } from "react";
@@ -25,8 +25,9 @@ type Props = {
 
 export const NavItem = (props: Props) => {
     const [arrow, setArrow] = useState(false);
-    const { tenant, setTenant } = useTenantContext();
+    const { tenant } = useTenantContext();
     const pathname = usePathname();
+    const router = useRouter();
     const verifyPathname = (path?: string) => {
         if (!path || !tenant) {
             return;
@@ -61,6 +62,9 @@ export const NavItem = (props: Props) => {
             e.preventDefault();
             return;
         }
+        // if (props.link) {
+        //     router.refresh();
+        // }
         if (props.click) {
             props.click();
         }
@@ -81,6 +85,7 @@ export const NavItem = (props: Props) => {
                     className={styles.boxContent}
                     onClick={handleClick}
                     href={props.link}
+                    prefetch={false}
                 >
                     <div className={styles.icon}>
                         <props.icon />

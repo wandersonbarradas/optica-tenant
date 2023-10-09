@@ -35,6 +35,8 @@ export default async function name({ params }: Props) {
     }
     //Pegando Dados do banco de dados
     const data = await getItemsProduct(tenant.id, params.identify);
-    console.log("Page Mais Server Side: ", data);
     return <More data={data} tenant={params.tenant} title={params.identify} />;
 }
+
+export const revalidate = 0;
+export const dynamic = "force-dynamic";

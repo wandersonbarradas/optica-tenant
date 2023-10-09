@@ -8,8 +8,6 @@ import JWT from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { TitlesMore } from "@/types/TitlesMore";
 
-export const revalidate = 0;
-
 export const getTenantFromSlug = async (
     slug: string,
 ): Promise<Tenant | null> => {
@@ -358,7 +356,7 @@ export const getItemsProduct = async (
 ) => {
     switch (identify) {
         case "funcionarios":
-            const data = await prisma.employee.findMany({
+            return await prisma.employee.findMany({
                 where: {
                     id_tenant,
                     active: true,
@@ -368,10 +366,8 @@ export const getItemsProduct = async (
                     name: true,
                 },
             });
-            console.log("Prisma:", data);
-            return data;
         case "lentes":
-            const data2 = await prisma.lense.findMany({
+            return await prisma.lense.findMany({
                 where: {
                     id_tenant,
                     active: true,
@@ -381,10 +377,8 @@ export const getItemsProduct = async (
                     name: true,
                 },
             });
-            console.log("Prisma:", data2);
-            return data2;
         case "lentes-especiais":
-            const data3 = await prisma.specialLense.findMany({
+            return await prisma.specialLense.findMany({
                 where: {
                     id_tenant,
                     active: true,
@@ -394,10 +388,8 @@ export const getItemsProduct = async (
                     name: true,
                 },
             });
-            console.log("Prisma:", data3);
-            return data3;
         case "tratamentos":
-            const data4 = await prisma.treatment.findMany({
+            return await prisma.treatment.findMany({
                 where: {
                     id_tenant,
                     active: true,
@@ -407,8 +399,6 @@ export const getItemsProduct = async (
                     name: true,
                 },
             });
-            console.log("Prisma:", data4);
-            return data4;
         default:
             return null;
     }

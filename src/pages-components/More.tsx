@@ -28,7 +28,6 @@ export const More = ({ title, tenant, data }: Props) => {
     const [productData, setProductData] = useState<GeneralProduct[]>([]);
 
     useEffect(() => {
-        console.log("Componente client side: ", data);
         if (data) {
             setProductData(data);
         }
@@ -305,5 +304,3 @@ export const More = ({ title, tenant, data }: Props) => {
         </>
     );
 };
-
-export const revalidate = 0;
