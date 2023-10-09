@@ -32,13 +32,8 @@ export const Layout = ({ children, tenant, user }: Props) => {
         switchTheme(tenant.primary_color, tenant.secondary_color);
         setTenant(tenant);
         setUser(user);
-        setShowMenu(false);
         setLoading(false);
     }, [tenant]);
-
-    useEffect(() => {
-        setShowMenu(false);
-    }, [pathname]);
 
     if (loading) {
         return <Loader />;

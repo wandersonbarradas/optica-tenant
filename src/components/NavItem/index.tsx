@@ -62,14 +62,14 @@ export const NavItem = (props: Props) => {
             e.preventDefault();
             return;
         }
-        // if (props.link) {
-        //     router.refresh();
-        // }
         if (props.click) {
             props.click();
         }
         if (props.setShowMenu) {
             props.setShowMenu(true);
+        }
+        if (props.link) {
+            router.refresh();
         }
     };
     return (
