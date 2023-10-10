@@ -1,0 +1,22 @@
+.header h1 {
+    font-size: var(--medium3);
+    font-weight: 600;
+    color: var(--colorPrimary);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.gridItem:nth-child(1) {
+    grid-column: span 12;
+}
+
+.gridItem:nth-child(2) {
+    grid-column: span 12;
+}
+
+.gridItem:nth-child(3) {
+    grid-column: span 12;
+}
