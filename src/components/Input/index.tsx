@@ -7,10 +7,11 @@ type PropriedadesComoLiteral<T> = {
     [K in keyof T]: K;
 };
 
-type Names = PropriedadesComoLiteral<SchemaFormSale>[keyof SchemaFormSale];
+type Union = PropriedadesComoLiteral<SchemaFormSale>[keyof SchemaFormSale];
+type FilterUndefined<T> = T extends undefined ? never : T;
+type Names = FilterUndefined<Union>;
 
 type Props = {
-    classes?: string;
     label?: string;
     id?: string;
     register: UseFormRegister<SchemaFormSale>;
@@ -18,25 +19,25 @@ type Props = {
     isNumber?: boolean;
     isDate?: boolean;
     errors: FieldErrors<SchemaFormSale>;
+    type?: string;
+    disabled?: boolean;
 };
 
 export const InputGroup = ({
-    classes,
     label,
     id,
     register,
     name,
-    isNumber,
-    isDate,
+    type,
     errors,
+    disabled,
 }: Props) => {
     const [config, setConfig] = useState<any>({});
     const [errorStatus, setErrorStatus] = useState<boolean>(false);
     useEffect(() => {
-        if (isNumber) {
+        if (type && type === "number") {
             setConfig({ valueAsNumber: true });
-        }
-        if (isDate) {
+        } else if (type && type === "date") {
             setConfig({ valueAsDate: true });
         }
     }, []);
@@ -51,9 +52,11 @@ export const InputGroup = ({
 
     return (
         <>
-            <label className={styles.label} htmlFor={id}>
-                {label}
-            </label>
+            {label && (
+                <label className={styles.label} htmlFor={id}>
+                    {label}
+                </label>
+            )}
             <input
                 className={[
                     styles.input,
@@ -61,6 +64,8 @@ export const InputGroup = ({
                 ].join(" ")}
                 {...register(name, config)}
                 id={id}
+                type={type}
+                disabled={disabled}
             />
             {errors[name] && (
                 <div className={styles.errorMessage}>

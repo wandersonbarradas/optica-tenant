@@ -8,7 +8,7 @@
     font-weight: 500;
     font-size: var(--medium1);
     color: var(--gray);
-    margin: var(--small2) 0;
+    margin-bottom: var(--small1);
 }
 
 .input {

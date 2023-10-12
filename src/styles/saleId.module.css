@@ -7,9 +7,10 @@
 .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    gap: var(--medium1);
 }
 
-.gridItem:nth-child(1) {
+/* .gridItem:nth-child(1) {
     grid-column: span 12;
 }
 
@@ -19,4 +20,38 @@
 
 .gridItem:nth-child(3) {
     grid-column: span 12;
+} */
+
+.accordion {
+    margin-top: var(--larger1);
+}
+
+.client .gridItem:nth-child(1) {
+    grid-column: span 4;
+}
+
+.client .gridItem:nth-child(2) {
+    grid-column: span 8;
+}
+
+.client .gridItem:nth-child(3) {
+    grid-column: span 8;
+}
+
+.label {
+    display: block;
+    font-weight: 500;
+    font-size: var(--medium1);
+    color: var(--gray);
+    margin-bottom: var(--small1);
+}
+
+.flexItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.icon {
+    color: var(--gray);
 }

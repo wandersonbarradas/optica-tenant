@@ -1,14 +1,14 @@
 import { z } from "zod";
 
 export const schemaFormSale = z.object({
-    name: z.string().min(2, "O nome deve ter pelo menos 2 caracteres"),
-    age: z
+    codigo: z
         .number({
-            required_error: "Campo obrigatório!",
-            invalid_type_error: "Somente números neste campo!",
+            required_error: "Inválido!",
+            invalid_type_error: "Inválido!",
         })
-        .min(18, "Idade minima de 18 anos"),
-    email: z.string().email("O e-mail deve ser válido"),
+        .min(1, "Inválido"),
+    name: z.string().optional(),
+    phone: z.string().optional(),
 });
 
 export type SchemaFormSale = z.infer<typeof schemaFormSale>;

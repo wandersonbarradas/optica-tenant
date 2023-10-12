@@ -8,7 +8,7 @@ import { Accordion } from "@/components/Accordion";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schemaFormSale, SchemaFormSale } from "@/zod-schemas/schemaFormSale";
-import { z } from "zod";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { InputGroup } from "@/components/Input";
 
 type Props = {
@@ -37,8 +37,42 @@ export const SaleId = (props: Props) => {
                 </h1>
                 <div className={styles.body}>
                     <form onSubmit={methods.handleSubmit(onSubmitForm)}>
-                        <Accordion title="Cliente">
+                        <Accordion
+                            title="Cliente"
+                            classes={[styles.accordion, styles.client].join(
+                                " ",
+                            )}
+                        >
                             <div className={styles.grid}>
+                                <div className={styles.gridItem}>
+                                    <label
+                                        className={styles.label}
+                                        htmlFor="codigo"
+                                    >
+                                        Código
+                                    </label>
+                                    <div className={styles.flexItem}>
+                                        <div>
+                                            <InputGroup
+                                                errors={
+                                                    methods.formState.errors
+                                                }
+                                                name="codigo"
+                                                register={methods.register}
+                                                id="codigo"
+                                                type="number"
+                                            />
+                                        </div>
+                                        <div
+                                            className={[
+                                                "icon",
+                                                styles.icon,
+                                            ].join(" ")}
+                                        >
+                                            <SearchOutlinedIcon />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className={styles.gridItem}>
                                     <InputGroup
                                         errors={methods.formState.errors}
@@ -46,23 +80,16 @@ export const SaleId = (props: Props) => {
                                         register={methods.register}
                                         id="name"
                                         label="Nome"
-                                    />
-                                    <InputGroup
-                                        errors={methods.formState.errors}
-                                        name="age"
-                                        register={methods.register}
-                                        id="age"
-                                        label="Idade"
-                                        isNumber
+                                        type="text"
                                     />
                                 </div>
                                 <div className={styles.gridItem}>
                                     <InputGroup
                                         errors={methods.formState.errors}
-                                        name="email"
+                                        name="phone"
                                         register={methods.register}
-                                        id="email"
-                                        label="Email"
+                                        id="phone"
+                                        label="Telefone"
                                     />
                                 </div>
                                 <div className={styles.gridItem}>

@@ -5,9 +5,10 @@ import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRound
 type Props = {
     title: string;
     children: React.ReactNode;
+    classes?: string;
 };
 
-export const Accordion = ({ title, children }: Props) => {
+export const Accordion = ({ title, children, classes }: Props) => {
     const [showAccordion, setShowAccordion] = useState(true);
 
     const handleClickAccordion = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -26,9 +27,11 @@ export const Accordion = ({ title, children }: Props) => {
 
     return (
         <div
-            className={[styles.item, showAccordion ? styles.show : null].join(
-                " ",
-            )}
+            className={[
+                styles.item,
+                showAccordion ? styles.show : null,
+                classes,
+            ].join(" ")}
         >
             <h2 className={styles.header}>
                 <button onClick={handleClickAccordion}>
