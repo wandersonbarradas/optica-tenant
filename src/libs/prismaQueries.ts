@@ -614,7 +614,7 @@ export const authorizeToken = async (
         }
     } catch (err) {
         // O token é inválido ou expirou
-        console.error(err);
+        console.error("Usuário não autenticado");
     }
     return null;
 };

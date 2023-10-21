@@ -60,7 +60,7 @@
     border-radius: var(--small2);
     font-size: var(--medium2);
     font-weight: 600;
-    color: var(--colorPrimary);
+    color: var(--white);
 }
 
 .numberSumary.total {

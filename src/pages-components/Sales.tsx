@@ -1,19 +1,27 @@
+"use client";
 import { SaleBasic } from "@/types/Sale";
 import { SalesSummaryStatus } from "@/types/salesSummary";
 import styles from "@/styles/sales.module.css";
 import Formatters from "@/utils/Formatters";
 import { TableSales } from "@/components/tableSales";
+import { useRouter } from "next/navigation";
 type Props = {
     sales: SaleBasic[];
     salesSummaryStatus: SalesSummaryStatus;
 };
 
 export const Sales = ({ sales, salesSummaryStatus }: Props) => {
+    const router = useRouter();
     return (
         <>
             <div className={styles.header}>
                 <h1>Vendas</h1>
-                <button className={styles.btnNew}>Nova</button>
+                <button
+                    onClick={() => router.push(`vendas/nova`)}
+                    className={styles.btnNew}
+                >
+                    Nova
+                </button>
             </div>
             <section className={styles.sectionSummary}>
                 <div className={styles.cardSummary}>
