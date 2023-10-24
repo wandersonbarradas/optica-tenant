@@ -93,6 +93,7 @@
 }
 
 .noContent {
+    padding: var(--medium1);
     font-size: var(--medium2);
     font-weight: var(--weightMedium);
     text-align: center;
