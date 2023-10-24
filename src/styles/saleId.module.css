@@ -35,7 +35,7 @@
 }
 
 .client .gridItem:nth-child(3) {
-    grid-column: span 8;
+    grid-column: span 12;
 }
 
 .label {
