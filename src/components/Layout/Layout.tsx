@@ -33,6 +33,7 @@ export const Layout = ({ children, tenant, user }: Props) => {
         setTenant(tenant);
         setUser(user);
         setLoading(false);
+        setShowMenu(false);
     }, [tenant]);
 
     if (loading) {
