@@ -8,6 +8,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schemaFormSale, SchemaFormSale } from "@/zod-schemas/schemaFormSale";
 import { ClientSection } from "@/components/SalesFormSections/ClientSection/Index";
+import { ProductDescription } from "@/components/SalesFormSections/ProductDescription";
 
 type Props = {
     page: string;
@@ -24,7 +25,7 @@ export const SaleId = (props: Props) => {
         resolver: zodResolver(schemaFormSale),
     });
 
-    const onSubmitForm = (data: any) => console.log(data);
+    const onSubmitForm: any = (data: any) => console.log(data);
     return (
         <div className={styles.header}>
             <h1>
@@ -36,6 +37,7 @@ export const SaleId = (props: Props) => {
                 <FormProvider {...methods}>
                     <form onSubmit={methods.handleSubmit(onSubmitForm)}>
                         <ClientSection />
+                        <ProductDescription />
                         <div className={styles.gridItem}>
                             <input type="submit" value="Enviar" />
                         </div>

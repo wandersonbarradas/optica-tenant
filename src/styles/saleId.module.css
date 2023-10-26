@@ -26,6 +26,7 @@
     margin-top: var(--larger1);
 }
 
+/* Client Section */
 .client .gridItem:nth-child(1) {
     grid-column: span 4;
 }
@@ -35,6 +36,15 @@
 }
 
 .client .gridItem:nth-child(3) {
+    grid-column: span 12;
+}
+
+/* Product Description Section*/
+.productDescription .gridItem {
+    grid-column: span 6;
+}
+
+.productDescription .gridItem:nth-child(5) {
     grid-column: span 12;
 }
 
