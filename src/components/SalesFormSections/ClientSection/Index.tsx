@@ -42,6 +42,7 @@ export const ClientSection = () => {
                         register={register}
                         id="phone"
                         label="Telefone"
+                        disabled
                     />
                 </div>
                 <div className={stylesSaleId.gridItem}>
@@ -52,6 +53,7 @@ export const ClientSection = () => {
                         id="name"
                         label="Nome"
                         type="text"
+                        disabled
                     />
                 </div>
             </div>
