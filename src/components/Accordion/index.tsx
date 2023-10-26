@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./accordion.module.css";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import { SchemaFormSale } from "@/zod-schemas/schemaFormSale";
@@ -15,11 +15,12 @@ export const Accordion = ({ title, children, classes }: Props) => {
         formState: { errors },
     } = useFormContext<SchemaFormSale>();
     const [showAccordion, setShowAccordion] = useState(true);
+    const body = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (errors) {
-            const body = document.getElementById("body" + title) as HTMLElement;
-            body.style.maxHeight = body.scrollHeight + "px";
+        if (errors && body.current?.querySelector(".error")) {
+            updateHeightAccordion();
+            setShowAccordion(true);
         }
     }, [errors]);
 
@@ -31,7 +32,13 @@ export const Accordion = ({ title, children, classes }: Props) => {
         if (showAccordion) {
             body.style.maxHeight = "0";
         } else {
-            body.style.maxHeight = body.scrollHeight + "px";
+            updateHeightAccordion();
+        }
+    };
+
+    const updateHeightAccordion = () => {
+        if (body.current) {
+            body.current.style.maxHeight = body.current.scrollHeight + "px";
         }
     };
 
@@ -51,7 +58,7 @@ export const Accordion = ({ title, children, classes }: Props) => {
                     </div>
                 </button>
             </h2>
-            <div id={"body" + title} className={styles.body}>
+            <div ref={body} id={"body" + title} className={styles.body}>
                 <div className={styles.content}>{children}</div>
             </div>
         </div>
