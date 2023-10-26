@@ -68,7 +68,7 @@ export const InputGroup = ({
                 disabled={disabled}
             />
             {errors[name] && (
-                <div className={styles.errorMessage}>
+                <div className={[styles.errorMessage, "error"].join(" ")}>
                     {errors[name]?.message}
                 </div>
             )}
