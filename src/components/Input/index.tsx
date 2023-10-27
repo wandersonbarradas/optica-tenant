@@ -1,6 +1,6 @@
 import { SchemaFormSale } from "@/zod-schemas/schemaFormSale";
 import { useEffect, useState } from "react";
-import { UseFormRegister, FieldErrors } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import styles from "./input.module.css";
 
 type PropriedadesComoLiteral<T> = {
@@ -14,26 +14,26 @@ type Names = FilterUndefined<Union>;
 type Props = {
     label?: string;
     id?: string;
-    register: UseFormRegister<SchemaFormSale>;
     name: Names;
-    isNumber?: boolean;
-    isDate?: boolean;
-    errors: FieldErrors<SchemaFormSale>;
     type?: string;
     disabled?: boolean;
+    value?: string | number;
 };
 
 export const InputGroup = ({
     label,
     id,
-    register,
     name,
     type,
-    errors,
     disabled,
+    value,
 }: Props) => {
     const [config, setConfig] = useState<any>({});
     const [errorStatus, setErrorStatus] = useState<boolean>(false);
+    const {
+        register,
+        formState: { errors },
+    } = useFormContext<SchemaFormSale>();
     useEffect(() => {
         if (type && type === "number") {
             setConfig({ valueAsNumber: true });
@@ -50,6 +50,27 @@ export const InputGroup = ({
         }
     }, [errors[name]]);
 
+    if (type === "checkbox") {
+        return (
+            <label className={styles.labelCheckbox} htmlFor={id}>
+                <input
+                    className={[
+                        styles.checkboxInput,
+                        errorStatus ? styles.error : null,
+                    ].join(" ")}
+                    {...register(name)}
+                    id={id}
+                    type={type}
+                    disabled={disabled}
+                    value={value}
+                />
+                <div
+                    className={[styles.checkmark, "border checkbox"].join(" ")}
+                ></div>
+                {label}
+            </label>
+        );
+    }
     return (
         <>
             {label && (
