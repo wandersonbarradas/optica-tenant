@@ -41,57 +41,63 @@ export const ProductDescription = ({
                 <div className={stylesSaleId.gridItem}>
                     <InputGroup name="addition" id="addition" label="Adição" />
                 </div>
-                <div className={stylesSaleId.gridItem}>
-                    <h3 className={stylesSaleId.subTitleSection}>
-                        Tratamentos
-                    </h3>
-                    <div className={stylesSaleId.checkboxArea}>
-                        {treatments?.map((item, index) => (
-                            <InputGroup
-                                key={index}
-                                name="treatments"
-                                id={item.name.toLowerCase()}
-                                label={item.name}
-                                value={item.id}
-                                type="checkbox"
-                            />
-                        ))}
+                {treatments && treatments.length > 0 && (
+                    <div className={stylesSaleId.gridItem}>
+                        <h3 className={stylesSaleId.subTitleSection}>
+                            Tratamentos
+                        </h3>
+                        <div className={stylesSaleId.checkboxArea}>
+                            {treatments?.map((item, index) => (
+                                <InputGroup
+                                    key={index}
+                                    name="treatments"
+                                    id={item.name.toLowerCase()}
+                                    label={item.name}
+                                    value={item.id}
+                                    type="checkbox"
+                                />
+                            ))}
+                        </div>
                     </div>
-                </div>
-                <div className={stylesSaleId.gridItem}>
-                    <h3 className={stylesSaleId.subTitleSection}>
-                        Tipo de Lentes
-                    </h3>
-                    <div className={stylesSaleId.checkboxArea}>
-                        {lenses?.map((item, index) => (
-                            <InputGroup
-                                key={index}
-                                name="treatments"
-                                id={item.name.toLowerCase()}
-                                label={item.name}
-                                value={item.id}
-                                type="checkbox"
-                            />
-                        ))}
+                )}
+                {lenses && lenses.length > 0 && (
+                    <div className={stylesSaleId.gridItem}>
+                        <h3 className={stylesSaleId.subTitleSection}>
+                            Tipo de Lentes
+                        </h3>
+                        <div className={stylesSaleId.checkboxArea}>
+                            {lenses?.map((item, index) => (
+                                <InputGroup
+                                    key={index}
+                                    name="treatments"
+                                    id={item.name.toLowerCase()}
+                                    label={item.name}
+                                    value={item.id}
+                                    type="checkbox"
+                                />
+                            ))}
+                        </div>
                     </div>
-                </div>
-                <div className={stylesSaleId.gridItem}>
-                    <h3 className={stylesSaleId.subTitleSection}>
-                        Lentes Especiais
-                    </h3>
-                    <div className={stylesSaleId.checkboxArea}>
-                        {specialLenses?.map((item, index) => (
-                            <InputGroup
-                                key={index}
-                                name="treatments"
-                                id={item.name.toLowerCase()}
-                                label={item.name}
-                                value={item.id}
-                                type="checkbox"
-                            />
-                        ))}
+                )}
+                {specialLenses && specialLenses.length > 0 && (
+                    <div className={stylesSaleId.gridItem}>
+                        <h3 className={stylesSaleId.subTitleSection}>
+                            Lentes Especiais
+                        </h3>
+                        <div className={stylesSaleId.checkboxArea}>
+                            {specialLenses?.map((item, index) => (
+                                <InputGroup
+                                    key={index}
+                                    name="treatments"
+                                    id={item.name.toLowerCase()}
+                                    label={item.name}
+                                    value={item.id}
+                                    type="checkbox"
+                                />
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
                 <div className={stylesSaleId.gridItem}>
                     <InputGroup
                         name="obs_product"
