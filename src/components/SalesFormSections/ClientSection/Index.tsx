@@ -2,14 +2,8 @@ import stylesSaleId from "@/styles/saleId.module.css";
 import { Accordion } from "@/components/Accordion";
 import { InputGroup } from "@/components/Input";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { SchemaFormSale } from "@/zod-schemas/schemaFormSale";
-import { useFormContext } from "react-hook-form";
 
 export const ClientSection = () => {
-    const {
-        register,
-        formState: { errors },
-    } = useFormContext<SchemaFormSale>();
     return (
         <Accordion
             title="Cliente"
@@ -23,9 +17,7 @@ export const ClientSection = () => {
                     <div className={stylesSaleId.flexItem}>
                         <div>
                             <InputGroup
-                                errors={errors}
                                 name="codigo"
-                                register={register}
                                 id="codigo"
                                 type="number"
                             />
@@ -37,9 +29,7 @@ export const ClientSection = () => {
                 </div>
                 <div className={stylesSaleId.gridItem}>
                     <InputGroup
-                        errors={errors}
                         name="phone"
-                        register={register}
                         id="phone"
                         label="Telefone"
                         disabled
@@ -47,9 +37,7 @@ export const ClientSection = () => {
                 </div>
                 <div className={stylesSaleId.gridItem}>
                     <InputGroup
-                        errors={errors}
                         name="name"
-                        register={register}
                         id="name"
                         label="Nome"
                         type="text"

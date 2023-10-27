@@ -1,11 +1,21 @@
 import stylesSaleId from "@/styles/saleId.module.css";
 import { Accordion } from "@/components/Accordion";
 import { InputGroup } from "@/components/Input";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { SchemaFormSale } from "@/zod-schemas/schemaFormSale";
 import { useFormContext } from "react-hook-form";
+import { GeneralProduct } from "@/types/GeneralProduct";
 
-export const ProductDescription = () => {
+type Props = {
+    treatments: GeneralProduct[] | null;
+    lenses: GeneralProduct[] | null;
+    specialLenses: GeneralProduct[] | null;
+};
+
+export const ProductDescription = ({
+    treatments,
+    lenses,
+    specialLenses,
+}: Props) => {
     const {
         register,
         formState: { errors },
@@ -20,46 +30,71 @@ export const ProductDescription = () => {
         >
             <div className={stylesSaleId.grid}>
                 <div className={stylesSaleId.gridItem}>
-                    <InputGroup
-                        errors={errors}
-                        name="frame"
-                        register={register}
-                        id="frame"
-                        label="Armação"
-                    />
+                    <InputGroup name="frame" id="frame" label="Armação" />
+                </div>
+                <div className={stylesSaleId.gridItem}>
+                    <InputGroup name="od" id="od" label="OD" />
+                </div>
+                <div className={stylesSaleId.gridItem}>
+                    <InputGroup name="oe" id="oe" label="OE" />
+                </div>
+                <div className={stylesSaleId.gridItem}>
+                    <InputGroup name="addition" id="addition" label="Adição" />
+                </div>
+                <div className={stylesSaleId.gridItem}>
+                    <h3 className={stylesSaleId.subTitleSection}>
+                        Tratamentos
+                    </h3>
+                    <div className={stylesSaleId.checkboxArea}>
+                        {treatments?.map((item, index) => (
+                            <InputGroup
+                                key={index}
+                                name="treatments"
+                                id={item.name.toLowerCase()}
+                                label={item.name}
+                                value={item.id}
+                                type="checkbox"
+                            />
+                        ))}
+                    </div>
+                </div>
+                <div className={stylesSaleId.gridItem}>
+                    <h3 className={stylesSaleId.subTitleSection}>
+                        Tipo de Lentes
+                    </h3>
+                    <div className={stylesSaleId.checkboxArea}>
+                        {lenses?.map((item, index) => (
+                            <InputGroup
+                                key={index}
+                                name="treatments"
+                                id={item.name.toLowerCase()}
+                                label={item.name}
+                                value={item.id}
+                                type="checkbox"
+                            />
+                        ))}
+                    </div>
+                </div>
+                <div className={stylesSaleId.gridItem}>
+                    <h3 className={stylesSaleId.subTitleSection}>
+                        Lentes Especiais
+                    </h3>
+                    <div className={stylesSaleId.checkboxArea}>
+                        {specialLenses?.map((item, index) => (
+                            <InputGroup
+                                key={index}
+                                name="treatments"
+                                id={item.name.toLowerCase()}
+                                label={item.name}
+                                value={item.id}
+                                type="checkbox"
+                            />
+                        ))}
+                    </div>
                 </div>
                 <div className={stylesSaleId.gridItem}>
                     <InputGroup
-                        errors={errors}
-                        name="od"
-                        register={register}
-                        id="od"
-                        label="OD"
-                    />
-                </div>
-                <div className={stylesSaleId.gridItem}>
-                    <InputGroup
-                        errors={errors}
-                        name="oe"
-                        register={register}
-                        id="oe"
-                        label="OE"
-                    />
-                </div>
-                <div className={stylesSaleId.gridItem}>
-                    <InputGroup
-                        errors={errors}
-                        name="addition"
-                        register={register}
-                        id="addition"
-                        label="Adição"
-                    />
-                </div>
-                <div className={stylesSaleId.gridItem}>
-                    <InputGroup
-                        errors={errors}
                         name="obs_product"
-                        register={register}
                         id="obs_product"
                         label="Observações sobre o Produto"
                     />

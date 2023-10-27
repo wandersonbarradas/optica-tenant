@@ -37,7 +37,11 @@ export const SaleId = (props: Props) => {
                 <FormProvider {...methods}>
                     <form onSubmit={methods.handleSubmit(onSubmitForm)}>
                         <ClientSection />
-                        <ProductDescription />
+                        <ProductDescription
+                            treatments={props.treatments}
+                            lenses={props.lenses}
+                            specialLenses={props.specialLenses}
+                        />
                         <div className={styles.gridItem}>
                             <input type="submit" value="Enviar" />
                         </div>

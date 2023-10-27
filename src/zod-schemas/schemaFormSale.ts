@@ -16,6 +16,7 @@ export const schemaFormSale = z.object({
     oe: z.string().optional(),
     addition: z.string().optional(),
     obs_product: z.string().optional(),
+    treatments: z.array(z.string()).optional(),
 });
 
 export type SchemaFormSale = z.infer<typeof schemaFormSale>;
