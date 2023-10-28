@@ -115,7 +115,7 @@
 
 @media (min-width: 768px) {
     .aside {
-        z-index: 0;
+        z-index: auto;
         width: 85px;
         position: relative;
         top: 0;
