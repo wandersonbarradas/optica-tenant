@@ -81,8 +81,9 @@ export const HeaderLayout = ({ setShowMenu }: Props) => {
                             ref={inputRef}
                             type="search"
                             placeholder="Pesquisar"
-                            onBlur={handleFocusInput}
+                            //onBlur={handleFocusInput}
                         />
+
                         <div
                             className={["icon", styles.searchIcon].join(" ")}
                             onClick={handleSearchArea}
