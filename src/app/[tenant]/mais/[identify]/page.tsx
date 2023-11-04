@@ -39,12 +39,7 @@ export default async function name({ params }: Props) {
     }
     //Pegando Dados do banco de dados
     const data = await getItemsProduct(tenant.id, params.identify);
-    return (
-        <>
-            <p>{Math.random()}</p>
-            <More data={data} tenant={params.tenant} title={params.identify} />
-        </>
-    );
+    return <More data={data} tenant={params.tenant} title={params.identify} />;
 }
 
 export const revalidate = 0;

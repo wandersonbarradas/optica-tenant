@@ -68,9 +68,9 @@ export const NavItem = (props: Props) => {
         if (props.setShowMenu) {
             props.setShowMenu(true);
         }
-        // if (props.link) {
-        //     router.refresh();
-        // }
+        if (props.link) {
+            router.refresh();
+        }
     };
     return (
         <li
