@@ -12,7 +12,7 @@ type Props = {
     searchParams?: { page: string };
 };
 
-const Vendas = async ({ params, searchParams }: any) => {
+const Vendas = async ({ params, searchParams }: Props) => {
     //Pegando Tenant
     const tenant = await getTenantFromSlug(params.tenant);
     if (!tenant || tenant.status === "OFFLINE") return redirect("/");
