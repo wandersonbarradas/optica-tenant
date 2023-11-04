@@ -23,7 +23,7 @@ type Props = {
 };
 
 export default async function name({ params }: Props) {
-    revalidatePath(`/${params.tenant}/mais/${params.identify}`, "page");
+    revalidatePath(`/[tenant]/mais/[identify]`, "page");
     const c = cookies();
     if (!titles.includes(params.identify)) {
         notFound();
