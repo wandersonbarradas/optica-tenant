@@ -7,6 +7,8 @@ import { More } from "@/pages-components/More";
 import { TitlesMore } from "@/types/TitlesMore";
 import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
+import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 
 const titles = ["lentes", "lentes-especiais", "tratamentos", "funcionarios"];
 
@@ -21,6 +23,8 @@ type Props = {
 };
 
 export default async function name({ params }: Props) {
+    revalidatePath(`/${params.tenant}/mais/${params.identify}`, "page");
+    const c = cookies();
     if (!titles.includes(params.identify)) {
         notFound();
     }
