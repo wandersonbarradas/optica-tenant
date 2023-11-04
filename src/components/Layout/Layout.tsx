@@ -5,8 +5,6 @@ import styles from "@/styles/layout.module.css";
 import { useEffect, useState } from "react";
 import { switchTheme } from "@/utils/Theme";
 import { Tenant } from "@/types/Tenant";
-import { usePathname } from "next/navigation";
-import { Loader } from "../Loader";
 import { AsideLayout } from "../AsideLayout";
 import { HeaderLayout } from "../HeaderLayout";
 import { useAuthContext } from "@/contexts/auth";
@@ -25,20 +23,14 @@ export const Layout = ({ children, tenant, user }: Props) => {
     const { setUser } = useAuthContext();
     const [showMenu, setShowMenu] = useState(false);
     const { setTenant } = useTenantContext();
-    const pathname = usePathname();
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         switchTheme(tenant.primary_color, tenant.secondary_color);
         setTenant(tenant);
         setUser(user);
-        setLoading(false);
         setShowMenu(false);
     }, [tenant]);
 
-    if (loading) {
-        return <Loader />;
-    }
     return (
         <div className={styles.container}>
             {alert.length > 0 && (
