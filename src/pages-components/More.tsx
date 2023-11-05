@@ -12,6 +12,7 @@ import {
 } from "@/utils/ApiFront";
 import { GeneralProduct } from "@/types/GeneralProduct";
 import { Revalidate } from "@/app/actions";
+import { usePathname } from "next/navigation";
 type Props = {
     title: TitlesMore;
     tenant: string;
@@ -19,6 +20,7 @@ type Props = {
 };
 
 export const More = ({ title, tenant, data }: Props) => {
+    const path = usePathname();
     const { setAlert } = useAlertContext();
     const [modalShow, setModalShow] = useState(false);
     const [action, setAction] = useState<"Criar" | "Editar" | "Deletar">(
@@ -32,10 +34,6 @@ export const More = ({ title, tenant, data }: Props) => {
         if (data) {
             setProductData(data);
         }
-    }, [data]);
-
-    useEffect(() => {
-        Revalidate(`/${tenant}/mais/${title}`);
     }, []);
 
     const formatString = (str: string) => {
@@ -136,6 +134,7 @@ export const More = ({ title, tenant, data }: Props) => {
     };
 
     const handleSubmit = () => {
+        Revalidate(path);
         switch (action) {
             case "Criar":
                 if (!name) {
