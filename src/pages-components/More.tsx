@@ -11,6 +11,7 @@ import {
     deleteProductData,
 } from "@/utils/ApiFront";
 import { GeneralProduct } from "@/types/GeneralProduct";
+import { Revalidate } from "@/app/actions";
 type Props = {
     title: TitlesMore;
     tenant: string;
@@ -32,6 +33,10 @@ export const More = ({ title, tenant, data }: Props) => {
             setProductData(data);
         }
     }, [data]);
+
+    useEffect(() => {
+        Revalidate(`/${tenant}/mais/${title}`);
+    }, []);
 
     const formatString = (str: string) => {
         str = str.replace(/-/g, " ");
