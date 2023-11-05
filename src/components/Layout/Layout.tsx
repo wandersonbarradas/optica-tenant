@@ -11,6 +11,7 @@ import { useAuthContext } from "@/contexts/auth";
 import { useAlertContext } from "@/contexts/alert";
 import { User } from "@/types/User";
 import { AlertComponent } from "../Alert";
+import { usePathname } from "next/navigation";
 
 type Props = {
     tenant: Tenant;
@@ -23,13 +24,17 @@ export const Layout = ({ children, tenant, user }: Props) => {
     const { setUser } = useAuthContext();
     const [showMenu, setShowMenu] = useState(false);
     const { setTenant } = useTenantContext();
+    const pathname = usePathname();
 
     useEffect(() => {
         switchTheme(tenant.primary_color, tenant.secondary_color);
         setTenant(tenant);
         setUser(user);
-        setShowMenu(false);
     }, [tenant]);
+
+    useEffect(() => {
+        setShowMenu(false);
+    }, [pathname]);
 
     return (
         <div className={styles.container}>
